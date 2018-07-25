@@ -1,6 +1,6 @@
 module.exports = {
 	// Hiển thị danh sách các môn học
-  showSubjects : async function(req,res){
+  getSubjects : async function(req,res){
     var showData = await CoreCategories.find({
         'parent': 47,
         'display': 1,
@@ -9,7 +9,7 @@ module.exports = {
     return res.json(showData);
   },
   // Hiển thị danh sách các đề luyện tập
-  showPracticeTests : async function(req,res){
+  getTests : async function(req,res){
   	var categoryId = req.body.categoryId;
   	categoryId = '%,'+categoryId+'%,';
     var showData = await EducationTests.find({
@@ -26,12 +26,13 @@ module.exports = {
     return res.json(showData);
   },
   // Hiển thị danh sách các đề thi thu
-  showOnlineTests : async function(req,res){
+  getTestSets : async function(req,res){
   	var categoryId = req.body.categoryId;
+  	var compability = req.body.compability;
   	categoryId = '%,'+categoryId+'%,';
     var showData = await EducationTests.find({
         where: {
-        	'compability': 1,
+        	'compability': compability,
 	        'status': 1,
 	        'classes': {like: '%,5,%'},
 	        'categoryIds': {like :categoryId }
@@ -42,19 +43,22 @@ module.exports = {
     });
     return res.json(showData);
   },
-  // Hiển thị danh sách các đề thi chinhs thức vào TĐN các năm
-  showTdnTests : async function(req,res){
-  	var categoryId = req.body.categoryId;
-  	categoryId = '%,'+categoryId+'%,';
+  // Hiển thị đánh giá của người dùng
+  getTestimonials : async function(req,res){
+  	/*var categoryId = req.body.categoryId;
+  	var compability = req.body.compability;
+  	categoryId = '%,'+categoryId+'%,';*/
     var showData = await EducationTests.find({
-        where: {        	
-	        'status': 1,	        
+        where: {
+        	'compability': compability,
+	        'status': 1,
+	        'classes': {like: '%,5,%'},
 	        'categoryIds': {like :categoryId }
         },
-        sort: 'ordering DESC'
+        sort: 'ordering DESC',
 
         
     });
     return res.json(showData);
-  }
+  },
 };
