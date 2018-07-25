@@ -32,8 +32,19 @@ module.exports.routes = {
   },*/
   '/testApi': {
     action: 'ShowHomePage/showTdnTests'
-  }
-
+  },
+  '/common/getTests': {
+	  action: 'Common/getTests'
+  },
+  '/common/getTestSets': {
+	  action: 'Common/getTests'
+  },
+  '/common/getSubjects': {
+	  action: 'Common/getSubjects'
+  },
+  '/common/getTestimonials': {
+	  action: 'Common/getTestimonials'
+  },
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
