@@ -27,6 +27,12 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
+  /*'/testApi': {
+    action: 'TestApi/testApi'
+  },*/
+  '/testApi': {
+    action: 'ShowHomePage/showTdnTests'
+  }
 
   /***************************************************************************
   *                                                                          *

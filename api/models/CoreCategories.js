@@ -1,3 +1,4 @@
+
 module.exports = {
   tableName: 'categories',
   attributes: {
@@ -39,5 +40,6 @@ module.exports = {
         columnType: 'int'
     },
 
-  }
+  },
+  
 };
