@@ -61,4 +61,32 @@ module.exports = {
     });
     return res.json(showData);
   },
+  // Tạo danh sách các đề cha
+  createTest : async function(req,res){
+  	var time= 45;
+	var status= 1;
+	var ordering= i;
+	var classes= ',5,';
+	var compability= 1;
+	var categoryIds= ',383,';
+  	for (var i = 1; i <= 20; i++) {
+  		var name= 'Đề số '+i;
+  		var name_en= 'Đề số '+i;
+  		var name_sn= 'Đề số '+i;
+  		await EducationTests.create({
+	        'name': name,
+	        'name_en': name_en,
+	        'name_sn': name_sn,
+	        'time': time,
+	        'status': status,
+	        'ordering': ordering,
+	        'classes': classes,
+	        'compability': compability,
+	        'categoryIds': categoryIds        
+	    });	
+  		
+  	}
+  	
+    return res.json(1);
+  },
 };

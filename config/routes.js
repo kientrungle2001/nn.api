@@ -31,7 +31,7 @@ module.exports.routes = {
     action: 'TestApi/testApi'
   },*/
   '/testApi': {
-    action: 'ShowHomePage/showTdnTests'
+    action: 'ShowTest/getAnswers'
   },
   '/common/getTests': {
 	  action: 'Common/getTests'
@@ -45,6 +45,18 @@ module.exports.routes = {
   '/common/getTestimonials': {
 	  action: 'Common/getTestimonials'
   },
+  //Lay chi tiết 1 ban ghi trong bảng tests dua vào test ID
+  '/getTest':{
+    action: 'ShowTest/getTest'
+  },
+  //Lấy toàn bộ danh sách các câu hỏi của 1 test
+  '/getQuestion': {
+    action: 'ShowTest/getQuestions'
+  },
+  // Lấy câu trả lời và đáp án cho 1 câu hỏi
+  '/getAnswers':{
+    action: 'ShowTest/getAnswers'
+  }
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
