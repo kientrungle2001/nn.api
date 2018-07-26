@@ -31,13 +31,13 @@ module.exports.routes = {
     action: 'TestApi/testApi'
   },*/
   '/testApi': {
-    action: 'ShowTest/getAnswers'
+    action: 'Test/getQuestions'
   },
   '/common/getTests': {
 	  action: 'Common/getTests'
   },
   '/common/getTestSets': {
-	  action: 'Common/getTests'
+	  action: 'Common/getTestSets'
   },
   '/common/getSubjects': {
 	  action: 'Common/getSubjects'
@@ -47,15 +47,15 @@ module.exports.routes = {
   },
   //Lay chi tiết 1 ban ghi trong bảng tests dua vào test ID
   '/getTest':{
-    action: 'ShowTest/getTest'
+    action: 'Test/getTest'
   },
   //Lấy toàn bộ danh sách các câu hỏi của 1 test
   '/getQuestion': {
-    action: 'ShowTest/getQuestions'
+    action: 'Test/getQuestions'
   },
   // Lấy câu trả lời và đáp án cho 1 câu hỏi
   '/getAnswers':{
-    action: 'ShowTest/getAnswers'
+    action: 'Test/getAnswers'
   }
   /***************************************************************************
   *                                                                          *

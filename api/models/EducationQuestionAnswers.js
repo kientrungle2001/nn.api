@@ -23,7 +23,7 @@ module.exports = {
         columnType: 'text'
     },
     date_modify: {
-        type: 'number',
+        type: 'string',
         columnType: 'datetime'
     },
     admin_modify: {

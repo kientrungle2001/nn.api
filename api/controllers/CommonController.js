@@ -11,7 +11,7 @@ module.exports = {
   // Hiển thị danh sách các đề luyện tập
   getTests : async function(req,res){
   	var categoryId = req.body.categoryId;
-  	categoryId = '%,'+categoryId+'%,';
+  	categoryId = '%,'+categoryId+',%';
     var showData = await EducationTests.find({
         where: {
         	'practice': 1,
@@ -27,9 +27,11 @@ module.exports = {
   },
   // Hiển thị danh sách các đề thi thu
   getTestSets : async function(req,res){
-  	var categoryId = req.body.categoryId;
-  	var compability = req.body.compability;
-  	categoryId = '%,'+categoryId+'%,';
+  	/*var categoryId = req.body.categoryId;
+  	var compability = req.body.compability;*/
+  	var categoryId = 383;
+  	var compability =1;
+  	categoryId = '%,'+categoryId+',%';
     var showData = await EducationTests.find({
         where: {
         	'compability': compability,
@@ -42,6 +44,15 @@ module.exports = {
         
     });
     return res.json(showData);
+  },
+  // Hiển thi danh sách các đề con, với input là mảng testIds của đề cha
+  getTestChilds: async function(req, res){
+  	var testParentIds = req.body.test_parent_id;
+  	
+  	var dataTestChilds = await EducationTests.find({
+  		'parent': {in: testParentIds}
+  	});
+  	res.json(dataTestChilds);
   },
   // Hiển thị đánh giá của người dùng
   getTestimonials : async function(req,res){
