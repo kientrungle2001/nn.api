@@ -53,14 +53,7 @@ module.exports.routes = {
   '/getTest':{
     action: 'Test/getTest'
   },
-  //Lấy toàn bộ danh sách các câu hỏi của 1 test
-  '/getQuestion': {
-    action: 'Test/getQuestions'
-  },
-  // Lấy câu trả lời và đáp án cho 1 câu hỏi
-  '/getAnswers':{
-    action: 'Test/getAnswers'
-  },
+  
   //Hàm trả về mảng các câu hỏi và câu trả lời( đề trắc nghiệm ) với input testId
   '/getQuestionsAnswers':{
     action: 'Test/getQuestionsAnswers'
@@ -72,6 +65,22 @@ module.exports.routes = {
   // Hàm update kết quả bài thi
   '/updateUserBooks':{
     action: 'Test/updateUserBooks'
+  },
+  // Hàm lấy chủ đề của các môn học
+  '/getTopics':{
+    action: 'Subject/getTopics'
+  },
+  // Lấy tư vựng các môn
+  '/getVocabularies':{
+    action: 'Subject/getVocabularies'
+  },
+  // Lấy danh sách bài tập
+  '/getExercises':{
+    action: 'Subject/getExercises'
+  },
+  /// Lấy câu hỏi của bài tập
+  '/getExerciseQuestions':{
+    action: 'Subject/getExerciseQuestions'
   },
   /***************************************************************************
   *                                                                          *
