@@ -46,40 +46,40 @@ module.exports.routes = {
 	  action: 'Common/getTestimonials'
   },
   // Hàm tạo bản ghi của bảng consultants ( nhận tư vấn)
-  '/createConsultant':{
+  '/common/createConsultant':{
     action: 'Common/createConsultant'
   },
   //Lay chi tiết 1 ban ghi trong bảng tests dua vào test ID
-  '/getTest':{
+  '/test/getTest':{
     action: 'Test/getTest'
   },
   
   //Hàm trả về mảng các câu hỏi và câu trả lời( đề trắc nghiệm ) với input testId
-  '/getQuestionsAnswers':{
+  '/test/getQuestionsAnswers':{
     action: 'Test/getQuestionsAnswers'
   },
   //Hàm trả về mảng các câu hỏi và câu trả lời( đề tự luận ) với input testId
-  '/getQuestionsAnswersTl':{
+  '/test/getQuestionsAnswersTl':{
     action: 'Test/getQuestionsAnswersTl'
   },
   // Hàm update kết quả bài thi
-  '/updateUserBooks':{
+  '/test/updateUserBooks':{
     action: 'Test/updateUserBooks'
   },
   // Hàm lấy chủ đề của các môn học
-  '/getTopics':{
+  '/subject/getTopics':{
     action: 'Subject/getTopics'
   },
   // Lấy tư vựng các môn
-  '/getVocabularies':{
+  '/subject/getVocabularies':{
     action: 'Subject/getVocabularies'
   },
   // Lấy danh sách bài tập
-  '/getExercises':{
+  '/subject/getExercises':{
     action: 'Subject/getExercises'
   },
   /// Lấy câu hỏi của bài tập
-  '/getExerciseQuestions':{
+  '/subject/getExerciseQuestions':{
     action: 'Subject/getExerciseQuestions'
   },
   /***************************************************************************
