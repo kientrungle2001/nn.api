@@ -31,7 +31,7 @@ module.exports.routes = {
     action: 'TestApi/testApi'
   },*/
   '/testApi': {
-    action: 'Subject/getExercises'
+    action: 'Subject/getExerciseQuestions'
   },
   '/common/getTests': {
 	  action: 'Common/getTests'

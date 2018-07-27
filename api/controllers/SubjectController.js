@@ -46,7 +46,22 @@ module.exports= {
 	},
 	// Lấy câu hỏi của bài tập
 	getExerciseQuestions: async function(req, res){
-
+		var subject_id = req.body.subject_id;
+		var topic_id = req.body.topic_id;
+		var exercise_number = req.body.exercise_number;
+		var skip_records = 5*(exercise_number-1);
+		var dataQuestions = await EducationQuestions.find({
+			where: {
+				'status': 1,				
+				'categoryIds':{ like:  topic_id},
+				'classes': {like : '%,5,%'},
+			},
+			select:['id', 'request', 'name', 'name_vn', 'categoryIds', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias'],
+			limit: 5,
+			skip: skip_records,
+			sort: 'ordering ASC'			
+		}).populate('ref_question_answers');
+		res.json(dataQuestions);
 	},
 
 };
