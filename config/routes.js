@@ -56,7 +56,19 @@ module.exports.routes = {
   // Lấy câu trả lời và đáp án cho 1 câu hỏi
   '/getAnswers':{
     action: 'Test/getAnswers'
-  }
+  },
+  //Hàm trả về mảng các câu hỏi và câu trả lời( đề trắc nghiệm ) với input testId
+  '/getQuestionsAnswers':{
+    action: 'Test/getQuestionsAnswers'
+  },
+  //Hàm trả về mảng các câu hỏi và câu trả lời( đề tự luận ) với input testId
+  '/getQuestionsAnswersTl':{
+    action: 'Test/getQuestionsAnswersTl'
+  },
+  // Hàm update kết quả bài thi
+  '/updateUserBooks':{
+    action: 'Test/updateUserBooks'
+  },
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

@@ -45,7 +45,31 @@ module.exports = {
     teacherIdMark: {
         type: 'number',
         columnType: 'int'
-    }
+    },
+     /*created: function(){
+        var obj = this.toObject();
+        delete obj.created;
+        return obj;
+
+    },
+    creatorId: function(){
+        var obj = this.toObject();
+        delete obj.creatorId;
+        return obj;
+
+    },
+    modified: function(){
+        var obj = this.toObject();
+        delete obj.modified;
+        return obj;
+
+    },
+    modifiedId: function(){
+        var obj = this.toObject();
+        delete obj.modifiedId;
+        return obj;
+
+    },*/
 
   }
 };

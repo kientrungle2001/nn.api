@@ -56,17 +56,14 @@ module.exports = {
   },
   // Hiển thị đánh giá của người dùng
   getTestimonials : async function(req,res){
-  	/*var categoryId = req.body.categoryId;
-  	var compability = req.body.compability;
-  	categoryId = '%,'+categoryId+'%,';*/
-    var showData = await EducationTests.find({
+  	var categoryId = req.body.categoryId;
+  	
+    var showData = await CmsNews.find({
         where: {
-        	'compability': compability,
-	        'status': 1,
-	        'classes': {like: '%,5,%'},
-	        'categoryIds': {like :categoryId }
+        	'categoryId': categoryId,
+	        'status': 1	        
         },
-        sort: 'ordering DESC',
+        sort: 'ordering ASC',
 
         
     });
