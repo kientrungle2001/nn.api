@@ -5,7 +5,7 @@ module.exports = {
         'parent': 47,
         'display': 1,
         'status': 1
-    });
+    }).sort('ordering asc');
     return res.json(showData);
   },
   // Hiển thị danh sách các đề luyện tập
