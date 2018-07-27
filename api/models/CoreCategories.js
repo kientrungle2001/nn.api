@@ -15,6 +15,10 @@ module.exports = {
         type: 'number',
         columnType: 'int'
     },
+    parents: {
+        type: 'string',
+        columnType: 'varchar'
+    },
     router: {
         type: 'string',
         columnType: 'varchar'
