@@ -19,7 +19,7 @@ module.exports = {
 	        'status': 1,
 	        'categoryIds': {like :categoryId }
         },
-        sort: 'ordering DESC'
+        sort: 'ordering ASC'
 
         
     });
@@ -39,7 +39,7 @@ module.exports = {
 	        'classes': {like: '%,5,%'},
 	        'categoryIds': {like :categoryId }
         },
-        sort: 'ordering DESC',
+        sort: 'ordering ASC',
 
         
     });
