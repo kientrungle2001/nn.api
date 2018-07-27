@@ -97,4 +97,17 @@ module.exports = {
   	
     return res.json(1);
   },
+  // Tạo bản ghi nhận tư vấn
+  createConsultant: async function(req, res){
+  	var name= req.body.name;
+  	var phone = req.body.phone;
+  	var email= req.body.email;
+  	await CmsConsultants.create({
+  		'name': name,
+  		'email': email,
+  		'phone': phone,
+  		'status': 1
+  	});
+  	return res.json(1);
+  }
 };

@@ -48,7 +48,7 @@ module.exports = {
     },
      /*created: function(){
         var obj = this.toObject();
-        delete obj.created;
+        delete o j.created;
         return obj;
 
     },

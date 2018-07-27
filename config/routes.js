@@ -45,6 +45,10 @@ module.exports.routes = {
   '/common/getTestimonials': {
 	  action: 'Common/getTestimonials'
   },
+  // Hàm tạo bản ghi của bảng consultants ( nhận tư vấn)
+  '/createConsultant':{
+    action: 'Common/createConsultant'
+  },
   //Lay chi tiết 1 ban ghi trong bảng tests dua vào test ID
   '/getTest':{
     action: 'Test/getTest'
