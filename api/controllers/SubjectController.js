@@ -3,7 +3,7 @@ module.exports= {
 	getTopics: async function(req, res){
 		var subject_id = req.body.subject_id;
 		subject_id = '%,'+ subject_id +',%';
-		var dataTopics = await CoreCategores.find({
+		var dataTopics = await CoreCategories.find({
 			where: {
 				'status': 1,
 				'display': 1,
