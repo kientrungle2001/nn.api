@@ -7,6 +7,10 @@ module.exports = {
         type: 'string',
         columnType: 'varchar'
     },
+	name_vn: {
+        type: 'string',
+        columnType: 'varchar'
+    },
     parent: {
         type: 'number',
         columnType: 'int'
