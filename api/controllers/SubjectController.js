@@ -19,8 +19,7 @@ module.exports= {
 		var subject_id = req.body.subject_id;
 		var datagetVocabularies = await EducationDocuments.find({
 			where: {
-				'status': 1,
-				'display': 1,
+				'status': 1,				
 				'categoryId': subject_id,
 				'classes': {like : '%,5,%'},
 				'type': 'vocabulary',
@@ -32,7 +31,18 @@ module.exports= {
 	},
 	// Lấy danh sách bài tập
 	getExercises: async function(req, res){
-
+		var subject_id = req.body.subject_id;
+		var topic_id = req.body.topic_id;
+		topic_id = '%,'+topic_id+',%';
+		var getQuantity = await EducationQuestions.count({
+			where: {
+				'status': 1,				
+				'categoryIds':{ like:  topic_id},
+				'classes': {like : '%,5,%'},				
+			}
+		});
+		getQuantity = Math.ceil(getQuantity/5);
+		return res.json(getQuantity);
 	},
 	// Lấy câu hỏi của bài tập
 	getExerciseQuestions: async function(req, res){
