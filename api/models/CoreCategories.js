@@ -19,6 +19,10 @@ module.exports = {
         type: 'string',
         columnType: 'varchar'
     },
+	classes: {
+        type: 'string',
+        columnType: 'varchar'
+    },
     router: {
         type: 'string',
         columnType: 'varchar'
@@ -43,11 +47,18 @@ module.exports = {
         type: 'number',
         columnType: 'tinyint'
     },
+	document: {
+        type: 'number',
+        columnType: 'tinyint'
+    },
     software: {
         type: 'number',
         columnType: 'int'
     },
-
+	site: {
+        type: 'number',
+        columnType: 'int'
+    },
   },
   
 };
