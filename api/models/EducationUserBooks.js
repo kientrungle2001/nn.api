@@ -11,7 +11,7 @@ module.exports = {
         columnType: 'int'
     },
     startTime: {
-        type: 'string',
+        type: 'ref',
         columnType: 'datetime'
     },
     quantity_question: {
@@ -19,7 +19,7 @@ module.exports = {
         columnType: 'tinyint'
     },
     stopTime: {
-        type: 'string',
+        type: 'ref',
         columnType: 'datetime'
     },
     mark: {

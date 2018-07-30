@@ -75,11 +75,11 @@ module.exports = {
         columnType: 'varchar'
     },
     registered: {
-        type: 'string',
+        type: 'ref',
         columnType: 'datetime'
     },
     lastlogined: {
-        type: 'string',
+        type: 'ref',
         columnType: 'datetime'
     },
   }

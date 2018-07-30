@@ -13,9 +13,27 @@ module.exports = {
       }
     );
     if(checkLogin) {
-      res.json("True");
+      //check payment
+      var dateFormat = require('dateformat');
+      var now = new Date();
+      var formatNow= dateFormat(now, "yyyy-mm-dd HH:MM:ss");
+      var jsonDate = now.toJSON();
+
+      var datePayment = await EcommercePayments.findOne({
+         username: txtUsername,
+         paymentDate: {'<=': formatNow},
+         expiredDate: {'>=': formatNow}
+      });
+      if(datePayment){
+         var userPayment = 1;
+      }else var userPayment = 0;
+      checkLogin.payment = userPayment;
+      checkLogin.paymentDate =dateFormat(datePayment['paymentDate'], "yyyy-mm-dd HH:MM:ss"); 
+      checkLogin.expiredDate =dateFormat(datePayment['expiredDate'], "yyyy-mm-dd HH:MM:ss"); 
+      
       var encodedUser = new Buffer(JSON.stringify(checkLogin)).toString('base64');
-      res.redirect('http://fulllook.vn/login_callback.php?user='+encodedUser);      
+      res.redirect('http://fulllook.vn/login_callback.php?user='+encodedUser); 
+
     }else res.json("False");   
   },
   signup: async function (req, res) {  },

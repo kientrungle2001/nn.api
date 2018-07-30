@@ -11,7 +11,7 @@ module.exports = {
         columnType: 'int'
     },
     questionId: {
-        type: 'string',
+        type: 'ref',
         columnType: 'datetime'
     },
     question_type: {

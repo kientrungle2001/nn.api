@@ -80,11 +80,11 @@ module.exports = {
         columnType: 'varchar'
     },
     startDate: {
-        type: 'number',
+        type: 'ref',
         columnType: 'datetime'
     },
     endDate: {
-        type: 'number',
+        type: 'ref',
         columnType: 'datetime'
     },
     classes: {

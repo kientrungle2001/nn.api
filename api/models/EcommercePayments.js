@@ -38,7 +38,7 @@ module.exports = {
         columnType: 'tinyint'
     },
     paymentDate: {
-        type: 'number',
+        type: 'ref',
         columnType: 'datetime'
     },
     software: {
@@ -58,7 +58,7 @@ module.exports = {
         columnType: 'int'
     },
     expiredDate: {
-        type: 'number',
+        type: 'ref',
         columnType: 'datetime'
     },
     serviceType: {
