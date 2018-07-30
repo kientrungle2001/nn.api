@@ -87,9 +87,42 @@ module.exports.routes = {
   '/subject/getExercises':{
     action: 'Subject/getExercises'
   },
-  /// Lấy câu hỏi của bài tập
+  // Lấy câu hỏi của bài tập
   '/subject/getExerciseQuestions':{
     action: 'Subject/getExerciseQuestions'
+  },
+  // Hien thi lich su hoc tap cua hs
+  // Lay thông tin của hs
+  '/history/getUser':{
+    action:  'History/getUser'
+  },
+  // Sửa thông tin của hs
+  '/history/editUser':{
+    action:  'History/editUser'
+  },
+  // Đổi mật khẩu
+  '/history/editPassword':{
+    action:  'History/editPassword'
+  },
+  // Đổi avata
+  '/history/editAvatar':{
+    action:  'History/editAvatar'
+  },
+  // Lấy các bài luyện tập
+  '/history/getLessons':{
+    action:  'History/getLessons'
+  },
+  // Lấy các đề luyện tập hoặc đề thi
+  '/history/getTests':{
+    action:  'History/getTests'
+  },
+  // Lấy chi tiết của 1 bài tập
+  '/history/getDetailLesson':{
+    action:  'History/getDetailLesson'
+  },
+  // Lấy chi tiết của 1 đề thi
+  '/history/getDetailTest':{
+    action:  'History/getDetailTest'
   },
   /***************************************************************************
   *                                                                          *
