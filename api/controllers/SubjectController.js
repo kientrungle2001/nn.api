@@ -7,6 +7,24 @@ module.exports= {
 			where: {
 				'status': 1,
 				'display': 1,
+				'document': 0,
+				'parents': { like: subject_id},
+				'classes': {like : '%,5,%'},
+				'software': 1,
+				'site': [0, 1]
+			},
+			sort: 'ordering ASC'
+		});
+		return res.json(dataTopics);
+	},
+	getVocabularyTopics: async function(req, res){
+		var subject_id = req.body.subject_id;
+		subject_id = '%,'+ subject_id +',%';
+		var dataTopics = await CoreCategories.find({
+			where: {
+				'status': 1,
+				'display': 1,
+				'document': 1,
 				'parents': { like: subject_id},
 				'classes': {like : '%,5,%'}
 			},
