@@ -11,7 +11,8 @@ module.exports= {
 				'parents': { like: subject_id},
 				'classes': {like : '%,5,%'},
 				'software': 1,
-				'site': [0, 1]
+				'site': [0, 1],
+				//'displayAtSite': [0, 1]
 			},
 			sort: 'ordering ASC'
 		});
@@ -71,7 +72,7 @@ module.exports= {
 		var dataQuestions = await EducationQuestions.find({
 			where: {
 				'status': 1,				
-				'categoryIds':{ like:  topic_id},
+				'categoryIds':{ like:  '%,'+topic_id+',%'},
 				'classes': {like : '%,5,%'},
 			},
 			select:['id', 'request', 'name', 'name_vn', 'categoryIds', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias'],

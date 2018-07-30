@@ -47,11 +47,23 @@ module.exports = {
         type: 'number',
         columnType: 'tinyint'
     },
+	displayAtSite: {
+        type: 'number',
+        columnType: 'int'
+    },
 	document: {
         type: 'number',
         columnType: 'tinyint'
     },
-    software: {
+	content: {
+        type: 'string',
+        columnType: 'text'
+    },
+    level: {
+        type: 'number',
+        columnType: 'int'
+    },
+	software: {
         type: 'number',
         columnType: 'int'
     },
