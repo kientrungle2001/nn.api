@@ -74,5 +74,13 @@ module.exports = {
         type: 'string',
         columnType: 'varchar'
     },
+    registered: {
+        type: 'string',
+        columnType: 'datetime'
+    },
+    lastlogined: {
+        type: 'string',
+        columnType: 'datetime'
+    },
   }
 };

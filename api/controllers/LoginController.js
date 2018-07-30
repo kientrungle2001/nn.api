@@ -2,10 +2,11 @@
 module.exports = {
   userLogin: async function (req, res) {
     var txtUsername= req.body.username;
-    var txtPassword= req.body.password;
-    
-    var md5 = require('md5');
-    var txtPassword = md5(txtPassword);
+    var txtPassword= req.body.password;    
+    var crypto = require('crypto');
+    txtPassword = crypto.createHash('md5').update(txtPassword).digest('hex');
+    //txtPassword = crypto.createHash('md5').update(txtPassword).digest('hex');
+    //res.json(txtPassword);
     var checkLogin = await CoreUsers.findOne(
       {
         username: txtUsername, password: txtPassword

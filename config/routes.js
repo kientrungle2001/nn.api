@@ -33,6 +33,9 @@ module.exports.routes = {
   '/login/userLogin': {
     action: 'Login/userLogin'
   },
+  '/register/userRegister': {
+    action: 'Register/userRegister'
+  },
   /*'/testApi': {
     action: 'TestApi/testApi'
   },*/
