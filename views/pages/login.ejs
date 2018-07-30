@@ -1,0 +1,144 @@
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/
+bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script type="text/javascript">
+setTimeout(function sunrise () {
+  //document.getElementsByClassName('header')[0].style.backgroundColor = '#118798';
+}, 0);
+</script>
+<!------ Include the above in your HEAD tag ---------->
+    <!-- Đoạn mã facebook -->
+
+<script>
+  /*window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{your-app-id}',
+      cookie     : true,
+      xfbml      : true,
+      version    : '{latest-api-version}'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));*/
+</script>
+<!-- End Đoạn mã facebook -->
+    <div class="container" ng-app="loginApp" ng-controller="viewLoginController">
+        <form class="form-horizontal" role="form" method="POST" action="/login">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <h2>Please Login</h2>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="form-group has-danger">
+                        <label class="sr-only" for="username">Username</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                            <input type="text" name="username" ng-model="txtUsername" class="form-control" id="username"
+                                   placeholder="kieunghia" required autofocus>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <i class="fa fa-close"></i> Example error message
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="sr-only" for="password">Password</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                            <input type="password" ng-model="txtPassword" name="password" class="form-control" id="password"
+                                   placeholder="Password" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                        <!-- Put password error message here -->    
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6" style="padding-top: .35rem">
+                    <div class="form-check mb-2 mr-sm-2 mb-sm-0">
+                        <label class="form-check-label">
+                            <input class="form-check-input" name="remember"
+                                   type="checkbox" >
+                            <span style="padding-bottom: .15rem">Remember me</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 1rem">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-success" ng-click="bttLogin()"><i class="fa fa-sign-in"></i> Login</button>
+                    
+
+                    <!-- <button id="btn-fbsignup" type="button" ng-click="bttloginFacebook()" class="btn btn-primary"><i  class="icon-facebook"></i>   Sign Up with Facebook</button> -->
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+   <script>
+			var app= angular.module('loginApp',[]);
+			app.controller('viewLoginController', function($scope, $http){
+				
+				
+				$scope.bttLogin= function(){
+					var username= $scope.txtUsername;
+					var password= $scope.txtPassword;
+					
+					$http({
+					        method : "POST",
+					        url : "login/userLogin",
+					        data:{
+					        	username: username ,
+					        	password: password
+					        	
+					        }
+						}).then(function mySuccess(response) {
+						       
+						       		
+						       console.log(response.data);
+						       
+						});
+						
+
+				}
+			});
+
+
+</script> 
