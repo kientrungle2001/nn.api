@@ -91,6 +91,10 @@ module.exports.routes = {
   '/subject/getExerciseQuestions':{
     action: 'Subject/getExerciseQuestions'
   },
+  // Lấy câu hỏi của bài tập Quan Sat
+  '/subject/getAllExerciseQuestions':{
+    action: 'Subject/getAllExerciseQuestions'
+  },
   // Update kết quả bài làm của hs
   '/subject/updateUserBooks':{
     action: 'Subject/updateUserBooks'
