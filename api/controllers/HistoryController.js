@@ -47,10 +47,8 @@ module.exports = {
     res.json(1);
   },
   getLessons: async function(req, res){
-    /*var numberPage= req.body.numberPage;
-    var userId = req.body.userId;*/
-    var numberPage= 0;
-    var userId = 11815;
+    var numberPage= req.body.numberPage;
+    var userId = req.body.userId;
     var skipRecords = numberPage * 20;
     var dataLessons= await EducationUserBooks.find({
       where: { userId: userId, testId: 0 },
