@@ -93,9 +93,19 @@ module.exports = {
     parentTest: {
         type: 'number',
         columnType: 'tinyint'
+    },
+    // Liên kết với model CoreCategories
+    topic: {
+        model: 'CoreCategories'
+    },
+    // Liên kết với model EducationTests
+    parentTest: {
+        model: 'EducationTests'
+    },
+    // Liên kết với model EducationTests
+    testId: {
+        model: 'EducationTests'
     }
-
-
 
   }
 };

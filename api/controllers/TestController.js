@@ -34,6 +34,7 @@ module.exports = {
 	// Hàm update kết quả bài thi
 	updateUserBooks : async function(req, res){
 		var questions = req.body.questions;
+		var categoryId = req.body.categoryId;
 		var testId = req.body.testId;
 		var mark = req.body.mark;
 		var userId = req.body.userId;
@@ -51,6 +52,7 @@ module.exports = {
 		//update bang user_book
 		var userbok= await EducationUserBooks.create({
 			'testId' : testId,
+			'categoryId': categoryId,
 			'mark' : mark,
 			'userId' : userId,
 			'duringTime' : duringTime,

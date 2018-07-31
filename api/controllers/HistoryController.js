@@ -46,8 +46,43 @@ module.exports = {
     await CoreUsers.update({id: txtUserId}).set({'avatar':urlAvatar});
     res.json(1);
   },
-  getLessons: async function(req, res){},
-  getTests: async function(req, res){},
+  getLessons: async function(req, res){
+    /*var numberPage= req.body.numberPage;
+    var userId = req.body.userId;*/
+    var numberPage= 0;
+    var userId = 11815;
+    var skipRecords = numberPage * 20;
+    var dataLessons= await EducationUserBooks.find({
+      where: { userId: userId, testId: 0 },
+      select: ['id', 'userId', 'categoryId', 'startTime', 'quantity_question', 'stopTime', 'mark', 'duringTime', 'created', 'exercise_number', 'topic', 'lang'],
+      skip: skipRecords,
+      limit: 20,
+      sort: 'created DESC'
+    }).populate('topic');   
+    res.json(dataLessons); 
+  },
+  getTests: async function(req, res){
+    var numberPage= req.body.numberPage;
+    var userId = req.body.userId;
+    var categoryId = req.body.categoryId;
+    var compability = req.body.compability;
+    if(compability == 1){
+      var populateTest = 'parentTest';
+    }else var populateTest = 'testId';
+    var skipRecords = numberPage * 20;
+    var dataTests= await EducationUserBooks.find({
+      where: { 
+        userId: userId,        
+        compability: compability,
+        categoryId: categoryId
+      },
+      select: ['id', 'userId', 'testId','parentTest','categoryId', 'startTime', 'quantity_question', 'stopTime', 'mark', 'duringTime', 'created', 'compability', 'lang'],
+      skip: skipRecords,
+      limit: 20,
+      sort: 'created DESC'
+    }).populate(populateTest);   
+    res.json(dataTests); 
+  },
   getDetailLesson: async function(req, res){},
   getDetailTest: async function(req, res){},
   signup: async function (req, res) {  },
