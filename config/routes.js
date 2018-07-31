@@ -91,6 +91,10 @@ module.exports.routes = {
   '/subject/getExerciseQuestions':{
     action: 'Subject/getExerciseQuestions'
   },
+  // Update kết quả bài làm của hs
+  '/subject/updateUserBooks':{
+    action: 'Subject/updateUserBooks'
+  },
   // Hien thi lich su hoc tap cua hs
   // Lay thông tin của hs
   '/history/getUser':{

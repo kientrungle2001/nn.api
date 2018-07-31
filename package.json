@@ -26,7 +26,8 @@
     "sails-hook-orm": "^2.0.0-16",
     "sails-hook-sockets": "^1.4.0",
     "sails-mysql": "^1.0.0",
-    "sails-passport": "0.0.0"
+    "sails-passport": "0.0.0",
+    "string": "^3.3.3"
   },
   "devDependencies": {
     "@sailshq/eslint": "^4.19.3"

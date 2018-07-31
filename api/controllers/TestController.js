@@ -42,10 +42,12 @@ module.exports = {
 		var quantity_question = req.body.quantity_question;
 		var lang = req.body.lang;
 		var compability = req.body.compability;
-		var parentTest = req.body.parentTest;
-		
+		var parentTest = req.body.parentTest;		
 		var keybook = testId + userId + duringTime;
+		var md5 = require('md5');
 		keybook =md5(keybook);
+		var S = require('string');
+		keybook = S(keybook).left(7).toString();
 		//update bang user_book
 		var userbok= await EducationUserBooks.create({
 			'testId' : testId,
