@@ -17,8 +17,8 @@ module.exports = {
     var txtBirthday= '22-11-2015'; 
     var txtSex= 1;
     var txtAreacode= 1; */
-    var crypto = require('crypto');
-    txtPassword = crypto.createHash('md5').update(txtPassword).digest('hex');
+    var md5 = require('md5');
+    txtPassword = md5(txtPassword);
     //txtPassword = crypto.createHash('md5').update(txtPassword).digest('hex');
     //res.json(txtPassword);
     var checkLogin = await CoreUsers.findOne({username: txtUsername});
