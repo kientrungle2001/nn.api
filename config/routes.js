@@ -128,6 +128,10 @@ module.exports.routes = {
   '/history/getDetailTest':{
     action:  'History/getDetailTest'
   },
+  // Lấy chi tiết câu hỏi và câu trả lời của 1 bài 
+  '/history/getQuestionAnswers': {
+    action: 'History/getQuestionAnswers'
+  }
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

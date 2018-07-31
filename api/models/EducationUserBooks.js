@@ -105,6 +105,11 @@ module.exports = {
     // Liên kết với model EducationTests
     testId: {
         model: 'EducationTests'
+    },
+    // Liên kết với model EducationUserBookAnswers
+    ref_userbook_answers: {
+        collection: 'EducationUserBookAnswers',
+        via: 'user_book_id'
     }
 
   }
