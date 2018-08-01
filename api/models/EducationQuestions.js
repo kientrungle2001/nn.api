@@ -130,6 +130,10 @@ module.exports = {
         type: 'number',
         columnType: 'tinyint'
     },
+    status: {
+        type: 'number',
+        columnType: 'tinyint'
+    },
     //Khai bao tham chieu den model EducationQuestionAnswers
     ref_question_answers:{
         collection: 'EducationQuestionAnswers',

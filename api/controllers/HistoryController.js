@@ -47,10 +47,8 @@ module.exports = {
     res.json(1);
   },
   getLessons: async function(req, res){
-    /*var numberPage= req.body.numberPage;
-    var userId = req.body.userId;*/
-    var numberPage= 0;
-    var userId = 11815;
+    var numberPage= req.body.numberPage;
+    var userId = req.body.userId;
     var skipRecords = numberPage * 20;
     var dataLessons= await EducationUserBooks.find({
       where: { userId: userId, testId: 0 },
@@ -83,8 +81,37 @@ module.exports = {
     }).populate(populateTest);   
     res.json(dataTests); 
   },
-  getDetailLesson: async function(req, res){},
-  getDetailTest: async function(req, res){},
+  getDetailLesson: async function(req, res){
+    var userbookId= req.body.userbookId;
+    /*var userbookId= 361392;*/
+    var dataUserBook = await EducationUserBooks.findOne({
+      where: {id: userbookId},
+      select: ['id', 'quantity_question', 'mark']
+    }).populate('ref_userbook_answers');    
+    res.json(dataUserBook);
+  },
+  getQuestionAnswers: async function(req, res){
+    // Lay danh sach cac cau hoi va tra loi tu bang questions
+    var questionIds = req.body.questionIds;
+    var dataQuestions = await EducationQuestions.find({
+      where: {
+        'status': 1,
+        'id': {in:questionIds }
+      },
+      select:['id', 'request', 'name', 'name_vn', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias'],
+  
+    }).populate('ref_question_answers');
+    res.json(dataQuestions);
+  },
+  getDetailTest: async function(req, res){
+    /*var userbookId= req.body.userbookId;*/
+    var userbookId= 776381;
+    var dataUserBook = await EducationUserBooks.findOne({
+      where: {id: userbookId},
+      select: ['id', 'quantity_question', 'mark']
+    }).populate('ref_userbook_answers');    
+    res.json(dataUserBook);
+  },
   signup: async function (req, res) {  },
 
 };

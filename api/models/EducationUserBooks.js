@@ -1,7 +1,7 @@
 module.exports = {
   tableName: 'user_book',
   attributes: {
-
+	creatorId: false,
     userId: {
         type: 'number',
         columnType: 'int'
@@ -106,7 +106,11 @@ module.exports = {
     testId: {
         model: 'EducationTests'
     },
-	creatorId: false
+    // Liên kết với model EducationUserBookAnswers
+    ref_userbook_answers: {
+        collection: 'EducationUserBookAnswers',
+        via: 'user_book_id'
+    }
 
   }
 };

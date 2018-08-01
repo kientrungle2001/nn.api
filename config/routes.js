@@ -91,6 +91,10 @@ module.exports.routes = {
   '/subject/getExerciseQuestions':{
     action: 'Subject/getExerciseQuestions'
   },
+  // Lấy câu hỏi của bài tập Quan Sat
+  '/subject/getAllExerciseQuestions':{
+    action: 'Subject/getAllExerciseQuestions'
+  },
   // Update kết quả bài làm của hs
   '/subject/updateUserBooks':{
     action: 'Subject/updateUserBooks'
@@ -127,6 +131,38 @@ module.exports.routes = {
   // Lấy chi tiết của 1 đề thi
   '/history/getDetailTest':{
     action:  'History/getDetailTest'
+  },
+  // Lấy chi tiết câu hỏi và câu trả lời của 1 bài 
+  '/history/getQuestionAnswers': {
+    action: 'History/getQuestionAnswers'
+  },
+  // Lấy danh sách các bài viết ( tin tức)
+  '/new/getNews': {
+    action: 'New/getNews'
+  },
+  // Lấy các Documents
+  '/document/getDocuments': {
+    action: 'Document/getDocuments'
+  },
+  // Lấy danh sách câu hỏi trong mục HỎi đáp Aqs
+  '/aqs/getQuestions': {
+    action: 'Aqs/getQuestions'
+  },
+  // Lấy danh sách câu trả lời trong mục HỎi đáp Aqs
+  '/aqs/getQuestionAswers': {
+    action: 'Aqs/getQuestionAswers'
+  },
+  // Đếm số câu trả lời
+  '/aqs/countQuestionAswers': {
+    action: 'Aqs/countQuestionAswers'
+  },
+  // Tao câu hỏi
+  '/aqs/createQuestions': {
+    action: 'Aqs/createQuestions'
+  },
+  // Tao câu trả lời
+  '/aqs/createQuestionAnswers': {
+    action: 'Aqs/createQuestionAnswers'
   },
   /***************************************************************************
   *                                                                          *

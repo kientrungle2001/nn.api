@@ -82,6 +82,21 @@ module.exports= {
 		}).populate('ref_question_answers');
 		res.json(dataQuestions);
 	},
+	// Lấy câu hỏi của bài tập Quan Sat
+	getAllExerciseQuestions: async function(req, res){
+		var subject_id = req.body.subject_id;
+		var topic_id = req.body.topic_id;		
+		var dataQuestions = await EducationQuestions.find({
+			where: {
+				'status': 1,				
+				'categoryIds':{ like:  '%,'+topic_id+',%'},
+				'classes': {like : '%,5,%'},
+			},
+			select:['id', 'request', 'name', 'name_vn', 'categoryIds', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias'],
+			sort: 'ordering ASC'			
+		}).populate('ref_question_answers');
+		res.json(dataQuestions);
+	},
 	// Hàm update kết quả bài làm của hs
 	updateUserBooks : async function(req, res){
 		var questions = req.body.questions;
@@ -116,7 +131,7 @@ module.exports= {
 			var user_book_id = userbok['id'];
 			var questionId = question['questionId'];
 			var answerId = question['answerId']; 
-			var userbok= await EducationUserBookAnswer.create({
+			var userbok= await EducationUserBookAnswers.create({
 				'user_book_id': user_book_id,
 				'questionId': questionId,
 				'answerId': answerId

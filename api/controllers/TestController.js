@@ -68,7 +68,7 @@ module.exports = {
 			var user_book_id = userbok['id'];
 			var questionId = question['questionId'];
 			var answerId = question['answerId']; 
-			var userbok= await EducationUserBookAnswer.create({
+			var userbok= await EducationUserBookAnswers.create({
 				'user_book_id': user_book_id,
 				'questionId': questionId,
 				'answerId': answerId

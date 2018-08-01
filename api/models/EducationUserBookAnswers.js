@@ -46,30 +46,10 @@ module.exports = {
         type: 'number',
         columnType: 'int'
     },
-     /*created: function(){
-        var obj = this.toObject();
-        delete o j.created;
-        return obj;
-
-    },
-    creatorId: function(){
-        var obj = this.toObject();
-        delete obj.creatorId;
-        return obj;
-
-    },
-    modified: function(){
-        var obj = this.toObject();
-        delete obj.modified;
-        return obj;
-
-    },
-    modifiedId: function(){
-        var obj = this.toObject();
-        delete obj.modifiedId;
-        return obj;
-
-    },*/
+    // Lieen ket voi model EducationUserBooks
+    user_book_id: {
+        model: 'EducationUserBooks'
+    }
 
   }
 };

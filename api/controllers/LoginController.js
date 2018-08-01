@@ -16,8 +16,6 @@ module.exports = {
       var dateFormat = require('dateformat');
       var now = new Date();
       var formatNow= dateFormat(now, "yyyy-mm-dd HH:MM:ss");
-      var jsonDate = now.toJSON();
-
       var datePayment = await EcommercePayments.findOne({
          username: txtUsername,
          paymentDate: {'<=': formatNow},
