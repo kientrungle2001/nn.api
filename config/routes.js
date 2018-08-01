@@ -143,7 +143,27 @@ module.exports.routes = {
   // Lấy các Documents
   '/document/getDocuments': {
     action: 'Document/getDocuments'
-  }
+  },
+  // Lấy danh sách câu hỏi trong mục HỎi đáp Aqs
+  '/aqs/getQuestions': {
+    action: 'Aqs/getQuestions'
+  },
+  // Lấy danh sách câu trả lời trong mục HỎi đáp Aqs
+  '/aqs/getQuestionAswers': {
+    action: 'Aqs/getQuestionAswers'
+  },
+  // Đếm số câu trả lời
+  '/aqs/countQuestionAswers': {
+    action: 'Aqs/countQuestionAswers'
+  },
+  // Tao câu hỏi
+  '/aqs/createQuestions': {
+    action: 'Aqs/createQuestions'
+  },
+  // Tao câu trả lời
+  '/aqs/createQuestionAnswers': {
+    action: 'Aqs/createQuestionAnswers'
+  },
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
