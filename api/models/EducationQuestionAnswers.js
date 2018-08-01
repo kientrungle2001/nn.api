@@ -34,6 +34,9 @@ module.exports = {
         type: 'string',
         columnType: 'text'
     },
+    'creatorId': false,
+    'modified': false,
+    'modifiedId': false,
     //Khai bao tham chieu den model EducationQuestions
     question_id:{
         model: 'EducationQuestions'

@@ -20,6 +20,8 @@ module.exports={
 		'note': {
 			type: 'string',
 			columnType: 'text'
-		}
+		},
+		'creatorId': false,		
+		'modifiedId': false,
 	}
 };

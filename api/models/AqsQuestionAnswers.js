@@ -25,5 +25,8 @@ module.exports= {
 			type: 'ref',
 			columnType: 'datetime'
 		},
+		'creatorId': false,
+		'modified': false,
+		'modifiedId': false,
 	},
 };
