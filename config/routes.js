@@ -135,6 +135,10 @@ module.exports.routes = {
   // Lấy chi tiết câu hỏi và câu trả lời của 1 bài 
   '/history/getQuestionAnswers': {
     action: 'History/getQuestionAnswers'
+  },
+  // Lấy danh sách các bài viết ( tin tức)
+  '/new/getNews': {
+    action: 'New/getNews'
   }
   /***************************************************************************
   *                                                                          *
