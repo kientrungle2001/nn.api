@@ -9,18 +9,8 @@ module.exports = {
     var txtBirthday= req.body.birthday; 
     var txtSex= req.body.sex;
     var txtAreacode= req.body.areacode; 
-    /*var txtName= 'Xoài';
-    var txtUsername= 'benxoai';
-    var txtEmail= 'benxoai@gmail.com';
-    var txtPhone= '123456789';
-    var txtPassword= '123456'; 
-    var txtBirthday= '22-11-2015'; 
-    var txtSex= 1;
-    var txtAreacode= 1; */
     var md5 = require('md5');
     txtPassword = md5(txtPassword);
-    //txtPassword = crypto.createHash('md5').update(txtPassword).digest('hex');
-    //res.json(txtPassword);
     var checkLogin = await CoreUsers.findOne({username: txtUsername});
     if(checkLogin) {
       res.json("Tên đăng nhập đã được sử dụng");           

@@ -139,6 +139,10 @@ module.exports.routes = {
   // Lấy danh sách các bài viết ( tin tức)
   '/new/getNews': {
     action: 'New/getNews'
+  },
+  // Lấy các Documents
+  '/document/getDocuments': {
+    action: 'Document/getDocuments'
   }
   /***************************************************************************
   *                                                                          *
