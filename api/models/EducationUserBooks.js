@@ -105,7 +105,8 @@ module.exports = {
     // Liên kết với model EducationTests
     testId: {
         model: 'EducationTests'
-    }
+    },
+	creatorId: false
 
   }
 };
