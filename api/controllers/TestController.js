@@ -15,7 +15,7 @@ module.exports = {
 			where: {
 				'testId': { like:  testId}
 			},
-			select:['id', 'request', 'name', 'name_vn', 'testId', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias']
+			select:['id', 'request', 'name', 'name_vn', 'testId', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias', 'explaination']
 		}).populate('ref_question_answers');
 		res.json(dataQuestions);
 	},
