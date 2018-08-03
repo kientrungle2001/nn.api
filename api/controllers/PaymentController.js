@@ -1,20 +1,15 @@
 module.exports = {
 	payCard: async function(req, res){
 		var md5 = require('md5');
-		/*var userId = req.body.userId;
+		var userId = req.body.userId;
 		var username = req.body.username;
-		var pinCard = md5(req.body.pinCard);*/
-		var username = 'kieunghia';
+		var pinCard = md5(req.body.pinCard);		
 		var dataResult= {
 			'string': '',
-			result: 0
-		};
-		var userId = 9;
-		var pinCard = 'test';
+			'result': 0
+		};		
 		var checkCard = await EcommercePayCards.findOne({
-			'pincard_normal': pinCard,
-			//'status': 1
-
+			'pincard_normal': pinCard
 		});
 		if(checkCard){
 			if(checkCard['status']==1){
@@ -98,5 +93,7 @@ module.exports = {
 		res.json(dataResult);	
 		
 	},
-	orderCard: async function(req, res){},
+	orderCard: async function(req, res){
+
+	},
 };

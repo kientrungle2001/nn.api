@@ -8,8 +8,7 @@ module.exports = {
 		res.json(dataTypeGame);
 	},
 	getTopic: async function(req, res){
-		//var gameType = req.gameType;
-		var gameType ='dragWord';
+		var gameType = req.gameType;		
 		if(gameType == 'muatu'){
 			var dataGame = await GameTopics.find({
 				where: {
