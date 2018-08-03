@@ -51,6 +51,10 @@ module.exports = {
         type: 'number',
         columnType: 'int'
     },
+    software:{
+            type: 'number',
+            columnType: 'int'
+        },
   },
   
 };

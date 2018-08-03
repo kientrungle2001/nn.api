@@ -5,7 +5,8 @@ module.exports = {
 			where: {
 				'categoryId': categoryId,
 				'status': 1,
-				'type': 'document'
+				'type': 'document',
+				'software': 1
 			},
 		});
 		res.json(dataDocuments);

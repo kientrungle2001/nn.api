@@ -27,7 +27,9 @@ module.exports= {
 				'display': 1,
 				'document': 1,
 				'parents': { like: subject_id},
-				'classes': {like : '%,5,%'}
+				'classes': {like : '%,5,%'},
+				'software': 1,
+				'site': [0, 1],
 			},
 			sort: 'ordering ASC'
 		});
@@ -42,7 +44,8 @@ module.exports= {
 				'categoryId': subject_id,
 				'classes': {like : '%,5,%'},
 				'type': 'vocabulary',
-				'hidden': 0
+				'hidden': 0,
+				'software': 1,				
 			},
 			sort: 'ordering ASC'
 		});
@@ -57,7 +60,8 @@ module.exports= {
 			where: {
 				'status': 1,				
 				'categoryIds':{ like:  topic_id},
-				'classes': {like : '%,5,%'},				
+				'classes': {like : '%,5,%'},
+				'software': 1					
 			}
 		});
 		getQuantity = Math.ceil(getQuantity/5);
@@ -74,6 +78,7 @@ module.exports= {
 				'status': 1,				
 				'categoryIds':{ like:  '%,'+topic_id+',%'},
 				'classes': {like : '%,5,%'},
+				'software': 1				
 			},
 			select:['id', 'request', 'name', 'name_vn', 'categoryIds', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias'],
 			limit: 5,
@@ -91,6 +96,7 @@ module.exports= {
 				'status': 1,				
 				'categoryIds':{ like:  '%,'+topic_id+',%'},
 				'classes': {like : '%,5,%'},
+				'software': 1
 			},
 			select:['id', 'request', 'name', 'name_vn', 'categoryIds', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias'],
 			sort: 'ordering ASC'			
@@ -125,6 +131,7 @@ module.exports= {
 			'lang' : lang,
 			'status' : 1,			
 			'keybook' : keybook,
+			'software': 1
 		}).fetch();
 		//update bang user_answers
 		questions.forEach( async function(question, index) {

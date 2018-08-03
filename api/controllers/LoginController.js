@@ -19,7 +19,9 @@ module.exports = {
       var datePayment = await EcommercePayments.findOne({
          username: txtUsername,
          paymentDate: {'<=': formatNow},
-         expiredDate: {'>=': formatNow}
+         expiredDate: {'>=': formatNow},
+         software: 1,
+         site: [0, 1],
       });
       if(datePayment){
          var userPayment = 1;

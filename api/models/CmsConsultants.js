@@ -1,27 +1,27 @@
 module.exports={
 	tableName: 'consultants',
 	attributes: {
-		'name': {
+		name: {
 			type: 'string',
 			columnType: 'varchar'
 		},
-		'email': {
+		email: {
 			type: 'string',
 			columnType: 'varchar'
 		},
-		'phone': {
+		phone: {
 			type: 'string',
 			columnType: 'varchar'
 		},
-		'status': {
+		status: {
 			type: 'number',
 			columnType: 'tinyint'
 		},
-		'note': {
+		note: {
 			type: 'string',
 			columnType: 'text'
 		},
-		'creatorId': false,		
-		'modifiedId': false,
+		creatorId: false,		
+		modifiedId: false,
 	}
 };

@@ -119,6 +119,6 @@ module.exports = {
         type: 'string',
         columnType: 'varchar'
     },
-    
+   
   }
 };

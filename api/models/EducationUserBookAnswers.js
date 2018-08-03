@@ -46,9 +46,9 @@ module.exports = {
         type: 'number',
         columnType: 'int'
     },
-    'creatorId': false,
-    'modified': false,
-    'modifiedId': false,
+    creatorId: false,
+    modified: false,
+    modifiedId: false,
     // Lieen ket voi model EducationUserBooks
     user_book_id: {
         model: 'EducationUserBooks'
