@@ -25,7 +25,7 @@ module.exports = {
 					'status': 1,
 					'gamecode': 'dragWord'
 				},
-				select: ['id','question','game_topic_id','gamecode','linkgame','documentId']
+				//select: ['id','question','game_topic_id','gamecode','linkgame','documentId']
 			});
 		}
 		res.json(dataGame);
