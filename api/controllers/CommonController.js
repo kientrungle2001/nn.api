@@ -18,7 +18,7 @@ module.exports = {
         where: {
         	'practice': 1,
           'software': 1,
-	        'displayAtSite': 1,
+	        //'displayAtSite': [0,1],
 	        'status': 1,
 	        'categoryIds': {like :categoryId }
         },
@@ -40,7 +40,7 @@ module.exports = {
         	'compability': compability,
 	        'status': 1,
           'software': 1,
-          'displayAtSite': 1,
+          'displayAtSite': [0,1],
 	        'classes': {like: '%,5,%'},
 	        'categoryIds': {like :categoryId }
         },
