@@ -34,6 +34,10 @@ module.exports= {
 			type: 'number',
 			columnType: 'tinyint'
 		},
+		'created': false,
+		'modified': false,
+		'creatorId': false,
+		'modifiedId': false,
 
 	}
 };

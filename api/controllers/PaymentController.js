@@ -94,6 +94,24 @@ module.exports = {
 		
 	},
 	orderCard: async function(req, res){
-
+		var quantity = req.body.quantity;		
+		var fullname = req.body.fullname;
+		var address = req.body.address;
+		var phone = req.body.phone;
+		var amount = req.body.amount;
+		var dateFormat = require('dateformat');
+      	var now = new Date();
+      	var date= dateFormat(now, "yyyy-mm-dd HH:MM:ss");		
+		await EcommerceOrderCards.create({
+			'quantity': quantity,
+			'date':date,
+			'fullname':fullname,
+			'address':address ,
+			'phone':phone,
+			'amount':amount,
+			'status': 1,
+			'software': 1,
+		});
+		res.json('Bạn đã đặt thẻ thành công! Chúng tôi sẽ sớm liên hệ với bạn.');
 	},
 };
