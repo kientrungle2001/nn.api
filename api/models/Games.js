@@ -9,6 +9,14 @@ module.exports = {
 			type: 'string',
 			columnType: 'varchar'
 		},
+		datatrue:{
+			type: 'string',
+			columnType: 'text'
+		},
+		dataword:{
+			type: 'string',
+			columnType: 'text'
+		},
 		game_topic_id:{
 			type: 'string',
 			columnType: 'varchar'
