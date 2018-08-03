@@ -164,6 +164,23 @@ module.exports.routes = {
   '/aqs/createQuestionAnswers': {
     action: 'Aqs/createQuestionAnswers'
   },
+  // Nap the
+  '/payment/payCard': {
+    action: 'Payment/payCard'
+  },
+  // Đặt thẻ
+  '/payment/orderCard': {
+    action: 'Payment/orderCard'
+  },
+  // Lấy Game Type
+  '/game/getType':{
+    action: 'Game/getType'
+  },
+  // Lấy Game Topic
+  '/game/getTopic':{
+    action: 'Game/getTopic'
+  }
+  // Lấy Game
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
