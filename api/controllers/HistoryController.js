@@ -51,7 +51,7 @@ module.exports = {
     var userId = req.body.userId;
     var skipRecords = numberPage * 20;
     var dataLessons= await EducationUserBooks.find({
-      where: { userId: userId, testId: 0 },
+      where: { userId: userId, testId: 0,software: 1},
       select: ['id', 'userId', 'categoryId', 'startTime', 'quantity_question', 'stopTime', 'mark', 'duringTime', 'created', 'exercise_number', 'topic', 'lang'],
       skip: skipRecords,
       limit: 20,
@@ -72,7 +72,8 @@ module.exports = {
       where: { 
         userId: userId,        
         compability: compability,
-        categoryId: categoryId
+        categoryId: categoryId,
+        software: 1       
       },
       select: ['id', 'userId', 'testId','parentTest','categoryId', 'startTime', 'quantity_question', 'stopTime', 'mark', 'duringTime', 'created', 'compability', 'lang'],
       skip: skipRecords,
@@ -85,7 +86,7 @@ module.exports = {
     var userbookId= req.body.userbookId;
     /*var userbookId= 361392;*/
     var dataUserBook = await EducationUserBooks.findOne({
-      where: {id: userbookId},
+      where: {id: userbookId, software: 1},
       select: ['id', 'quantity_question', 'mark']
     }).populate('ref_userbook_answers');    
     res.json(dataUserBook);
@@ -96,7 +97,8 @@ module.exports = {
     var dataQuestions = await EducationQuestions.find({
       where: {
         'status': 1,
-        'id': {in:questionIds }
+        'id': {in:questionIds },
+        'software': 1        
       },
       select:['id', 'request', 'name', 'name_vn', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias'],
   
@@ -107,7 +109,7 @@ module.exports = {
     /*var userbookId= req.body.userbookId;*/
     var userbookId= 776381;
     var dataUserBook = await EducationUserBooks.findOne({
-      where: {id: userbookId},
+      where: {id: userbookId, software: 1},
       select: ['id', 'quantity_question', 'mark']
     }).populate('ref_userbook_answers');    
     res.json(dataUserBook);

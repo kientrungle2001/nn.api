@@ -1,33 +1,33 @@
 module.exports = {
 	tableName : 'game_type',
 	attributes: {
-		'game_type':{
+		game_type:{
 			type: 'string',
 			columnType: 'varchar'
 		},
-		'userId':{
+		userId:{
 			type: 'number',
 			columnType: 'int'
 		},
-		'gamecode':{
+		gamecode:{
 			type: 'string',
 			columnType: 'varchar'
 		},
-		'vocabulary':{
+		vocabulary:{
 			type: 'number',
 			columnType: 'int'
 		},
-		'software':{
+		software:{
 			type: 'number',
 			columnType: 'int'
 		},
-		'status':{
+		status:{
 			type: 'number',
 			columnType: 'int'
 		},
-		'created': false,
-		'modified': false,
-		'creatorId': false,
+		created: false,
+		modified: false,
+		creatorId: false,
 		
 		
 	}

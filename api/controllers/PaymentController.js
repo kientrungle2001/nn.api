@@ -9,7 +9,9 @@ module.exports = {
 			'result': 0
 		};		
 		var checkCard = await EcommercePayCards.findOne({
-			'pincard_normal': pinCard
+			'pincard_normal': pinCard,
+			'software': 1,
+			'site': [0, 1],
 		});
 		if(checkCard){
 			if(checkCard['status']==1){
@@ -53,7 +55,9 @@ module.exports = {
 						'expiredDate': expiredDate ,
 						'serviceType': 'full',
 						'cardCode': pinCard,
-						'languages': 'ev'
+						'languages': 'ev',
+						'software': 1,
+						'site': 1,
 					});
 					dataResult.string = 'Bạn đã nạp thẻ thành công';
 					dataResult.result =1;
@@ -73,7 +77,9 @@ module.exports = {
 							'expiredDate': checkCard['endDate'] ,
 							'serviceType': 'full',
 							'cardCode': pinCard,
-							'languages': 'ev'
+							'languages': 'ev',
+							'software': 1,
+							'site': 1,
 						});
 						dataResult.string = 'Bạn đã nạp thẻ thành công';
 						dataResult.result =1;

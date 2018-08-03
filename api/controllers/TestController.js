@@ -3,7 +3,10 @@ module.exports = {
 	// Hàm trả về 1 bản ghi trong bảng test, với input: testId
 	getTest: async function(req, res){
 		var testId= req.body.test_id;
-		var dataTest= await EducationTests.findOne({'id': testId});
+		var dataTest= await EducationTests.findOne({
+			'id': testId,
+			'software': 1
+		});
 		res.json(dataTest);
 
 	},
@@ -13,7 +16,8 @@ module.exports = {
 		testId = '%,'+testId+ ',%';
 		var dataQuestions = await EducationQuestions.find({
 			where: {
-				'testId': { like:  testId}
+				'testId': { like:  testId},
+				'software': 1
 			},
 			select:['id', 'request', 'name', 'name_vn', 'testId', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias', 'explaination']
 		}).populate('ref_question_answers');
@@ -26,7 +30,8 @@ module.exports = {
 		testId = '%,'+testId+ ',%';
 		var dataQuestions = await EducationQuestions.find({
 			where: {
-				'testId': { like:  testId}
+				'testId': { like:  testId},
+				'software': 1
 			}
 		});
 		res.json(dataQuestions);
@@ -62,6 +67,7 @@ module.exports = {
 			'compability' : compability,
 			'parentTest' : parentTest,
 			'keybook' : keybook,
+			'software': 1
 		}).fetch();
 		//update bang user_answers
 		questions.forEach( async function(question, index) {

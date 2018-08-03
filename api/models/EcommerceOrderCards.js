@@ -1,43 +1,51 @@
 module.exports= {
 	tableName: 'order_card',
 	attributes: {
-		'quantity': {
+		quantity: {
 			type: 'number',
 			columnType: 'int'
 		},
-		'fullname': {
+		fullname: {
 			type: 'string',
 			columnType: 'varchar'
 		},
-		'address': {
+		address: {
 			type: 'string',
 			columnType: 'varchar'
 		},
-		'phone': {
+		phone: {
 			type: 'string',
 			columnType: 'varchar'
 		},
-		'amount': {
+		amount: {
 			type: 'number',
 			columnType: 'int'
 		},
-		'date': {
+		date: {
 			type: 'ref',
 			columnType: 'datetime'
 		},
-		'note': {
+		note: {
 			type: 'string',
 			columnType: 'text'
 		},
 
-		'status': {
+		status: {
 			type: 'number',
 			columnType: 'tinyint'
 		},
-		'created': false,
-		'modified': false,
-		'creatorId': false,
-		'modifiedId': false,
+		software:{
+			type: 'number',
+			columnType: 'int'
+		},
+		site:{
+			type: 'number',
+			columnType: 'int'
+		},
+		created: false,
+		modified: false,
+		creatorId: false,
+		modifiedId: false,
 
 	}
 };

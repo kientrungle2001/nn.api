@@ -1,28 +1,28 @@
 module.exports = {
 	tableName : 'game_topic',
 	attributes: {
-		'game_topic':{
+		game_topic:{
 			type: 'string',
 			columnType: 'varchar'
 		},
-		'userId':{
+		userId:{
 			type: 'number',
 			columnType: 'int'
 		},
-		'software':{
+		software:{
 			type: 'number',
 			columnType: 'int'
 		},
-		'parent':{
+		parent:{
 			type: 'number',
 			columnType: 'int'
 		},		
-		'status':{
+		status:{
 			type: 'number',
 			columnType: 'int'
 		},
-		'created': false,
-		'modified': false,
-		'creatorId': false,
+		created: false,
+		modified: false,
+		creatorId: false,
 	}
 };

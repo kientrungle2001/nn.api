@@ -4,7 +4,9 @@ module.exports = {
     var showData = await CoreCategories.find({
         'parent': 47,
         'display': 1,
-        'status': 1
+        'status': 1,
+        'software': 1,
+        'site': [0,1]
     }).sort('ordering asc');
     return res.json(showData);
   },
@@ -15,6 +17,7 @@ module.exports = {
     var showData = await EducationTests.find({
         where: {
         	'practice': 1,
+          'software': 1,
 	        'displayAtSite': 1,
 	        'status': 1,
 	        'categoryIds': {like :categoryId }
@@ -36,6 +39,8 @@ module.exports = {
         where: {
         	'compability': compability,
 	        'status': 1,
+          'software': 1,
+          'displayAtSite': 1,
 	        'classes': {like: '%,5,%'},
 	        'categoryIds': {like :categoryId }
         },
@@ -61,7 +66,8 @@ module.exports = {
     var showData = await CmsNews.find({
         where: {
         	'categoryId': categoryId,
-	        'status': 1	        
+	        'status': 1,
+          'software': 1,        
         },
         sort: 'ordering ASC',
 
@@ -90,7 +96,9 @@ module.exports = {
 	        'ordering': ordering,
 	        'classes': classes,
 	        'compability': compability,
-	        'categoryIds': categoryIds        
+	        'categoryIds': categoryIds,
+          'software': 1,
+          'displayAtSite': 1,       
 	    });	
   		
   	}

@@ -1,55 +1,55 @@
 module.exports= {
 	tableName: 'card_nextnobels',
 	attributes: {
-		'pincard': {
+		pincard: {
 			type: 'string',
 			columnType: 'varchar'
 		},
-		'pincard_normal': {
+		pincard_normal: {
 			type: 'string',
 			columnType: 'varchar'
 		},
-		'serial': {
+		serial: {
 			type: 'string',
 			columnType: 'varchar'
 		},
-		'price': {
+		price: {
 			type: 'number',
 			columnType: 'int'
 		},
-		'discount': {
+		discount: {
 			type: 'number',
 			columnType: 'int'
 		},
-		'languages': {
+		languages: {
 			type: 'string',
 			columnType: 'varchar'
 		},
-		'time': {
+		time: {
 			type: 'number',
 			columnType: 'int'
 		},
-		'promotion': {
+		promotion: {
 			type: 'number',
 			columnType: 'tinyint'
 		},
-		'quantity': {
+		quantity: {
 			type: 'number',
 			columnType: 'int'
 		},
-		'startDate': {
+		startDate: {
 			type: 'ref',
 			columnType: 'datetime'
 		},
-		'endDate': {
+		endDate: {
 			type: 'ref',
 			columnType: 'datetime'
 		},
-		'activedId':{
+		activedId:{
 			type: 'number',
 			columnType: 'int'
 		},
-		'status': {
+		status: {
 			type: 'number',
 			columnType: 'tinyint'
 		},

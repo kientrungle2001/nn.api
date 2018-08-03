@@ -94,6 +94,10 @@ module.exports = {
         type: 'number',
         columnType: 'tinyint'
     },
+    software:{
+        type: 'number',
+        columnType: 'int'
+    },
     // Liên kết với model CoreCategories
     topic: {
         model: 'CoreCategories'

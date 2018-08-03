@@ -1,32 +1,32 @@
 module.exports= {
 	tableName:'aqs_question',
 	attributes: {
-		'question':{
+		question:{
 			type: 'string',
 			columnType: 'text'
 		},
-		'answer':{
+		answer:{
 			type: 'number',
 			columnType: 'int'
 		},
-		'userId':{
+		userId:{
 			type: 'number',
 			columnType: 'int'
 		},
-		'software':{
+		software:{
 			type: 'number',
 			columnType: 'int'
 		},
-		'username':{
+		username:{
 			type: 'string',
 			columnType: 'varchar'
 		},
-		'created':{
+		created:{
 			type: 'ref',
 			columnType: 'datetime'
 		},
-		'creatorId': false,
-		'modified': false,
-		'modifiedId': false,
+		creatorId: false,
+		modified: false,
+		modifiedId: false,
 	},
 };
