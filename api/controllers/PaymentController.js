@@ -9,10 +9,10 @@ module.exports = {
 			'string': '',
 			result: 0
 		};
-		var userId = 7;
-		var pinCard = md5('ee0302e0');
+		var userId = 9;
+		var pinCard = 'test';
 		var checkCard = await EcommercePayCards.findOne({
-			'pincard': pinCard,
+			'pincard_normal': pinCard,
 			//'status': 1
 
 		});
@@ -21,7 +21,7 @@ module.exports = {
 				var dateFormat = require('dateformat');
 		      	var now = new Date();
 		      	var formatNow= dateFormat(now, "yyyy-mm-dd HH:MM:ss");
-				if(checkCard['endDate'] != new Date('00 -00 -000')){
+				if(checkCard['endDate'] == new Date('00 -00 -000')){
 					var time = checkCard['time'];
 					var date = now.getDate();
 					var month = now.getMonth()+1;
@@ -55,7 +55,7 @@ module.exports = {
 						'paymentStatus': 1,
 						'paymentDate': formatNow,
 						'status': 1,
-						'expiredDate': checkCard['endDate'] ,
+						'expiredDate': expiredDate ,
 						'serviceType': 'full',
 						'cardCode': pinCard,
 						'languages': 'ev'
@@ -66,7 +66,7 @@ module.exports = {
 					dataResult.expiredDate = expiredDate;
 					
 				}else{
-					if((checkCard['endDate'] >= formatNow)&& (checkCard['startDate'] <= formatNow)){
+					if(dateFormat(checkCard['endDate'], "yyyy-mm-dd HH:MM:ss") >= formatNow){
 						// insert history_payment
 						await EcommercePayments.create({
 							'username': username,
@@ -83,8 +83,9 @@ module.exports = {
 						dataResult.string = 'Bạn đã nạp thẻ thành công';
 						dataResult.result =1;
 						dataResult.paymentDate = formatNow;
-						dataResult.expiredDate = checkCard['endDate'];
+						dataResult.expiredDate = dateFormat(checkCard['endDate'], "yyyy-mm-dd HH:MM:ss");
 					}else dataResult.string ='Thẻ đã hết hạn sử dụng';
+
 				}
 			}else{
 				if(checkCard['activedId'] == userId){

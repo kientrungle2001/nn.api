@@ -1,7 +1,7 @@
 module.exports = {
 	tableName : 'game_topic',
 	attributes: {
-		'game_topic_id':{
+		'game_topic':{
 			type: 'string',
 			columnType: 'varchar'
 		},
