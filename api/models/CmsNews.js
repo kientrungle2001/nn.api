@@ -54,7 +54,12 @@ module.exports = {
     software:{
             type: 'number',
             columnType: 'int'
-        },
+    },
+    // Ket noi voi model CmsNewComments
+    ref_new_comments: {
+        collection: 'CmsNewComments',
+        via: 'newsId'
+    }
   },
   
 };
