@@ -137,8 +137,12 @@ module.exports.routes = {
     action: 'History/getQuestionAnswers'
   },
   // Lấy danh sách các bài viết ( tin tức)
-  '/new/getNews': {
-    action: 'New/getNews'
+  '/news/getNews': {
+    action: 'News/getNews'
+  },
+  // Lấy danh sách các bài viết ( tin tức)
+  '/news/getGifts': {
+    action: 'News/getGifts'
   },
   // Lấy các Documents
   '/document/getDocuments': {
