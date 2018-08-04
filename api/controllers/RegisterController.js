@@ -30,9 +30,16 @@ module.exports = {
         'registered': jsonDate,
         'lastlogined': jsonDate
       }).fetch();
-      var encodedUser = new Buffer(JSON.stringify(createUser)).toString('base64');
-      //res.redirect('http://fulllook.vn/login_callback.php?user='+encodedUser); 
-      res.json('true');
+      var dataUser= {
+        'userId':createUser['id'],
+        'username': createUser['username'],
+        'checkPayment': 0,
+        'paymentDate': '',
+        'expiredDate': ''
+      };
+      var encodedUser = new Buffer(JSON.stringify(dataUser)).toString('base64');
+      res.redirect('http://fulllook.vn/login_callback.php?user='+encodedUser); 
+      //res.json('true');
     }    
   },
   signup: async function (req, res) {  },

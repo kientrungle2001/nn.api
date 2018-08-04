@@ -16,21 +16,31 @@ module.exports = {
       var dateFormat = require('dateformat');
       var now = new Date();
       var formatNow= dateFormat(now, "yyyy-mm-dd HH:MM:ss");
-      var datePayment = await EcommercePayments.findOne({
+      var checkPayment = await EcommercePayments.findOne({
          username: txtUsername,
          paymentDate: {'<=': formatNow},
          expiredDate: {'>=': formatNow},
          software: 1,
          site: [0, 1],
       });
-      if(datePayment){
+      if(checkPayment){
          var userPayment = 1;
-      }else var userPayment = 0;
-      checkLogin.payment = userPayment;
-      checkLogin.paymentDate =dateFormat(datePayment['paymentDate'], "yyyy-mm-dd HH:MM:ss"); 
-      checkLogin.expiredDate =dateFormat(datePayment['expiredDate'], "yyyy-mm-dd HH:MM:ss"); 
+         var paymentDate = dateFormat(checkPayment['paymentDate'], "dd-mm-yyyy");
+         var expiredDate = dateFormat(checkPayment['expiredDate'], "dd-mm-yyyy");
+      }else{
+          var userPayment = 0;
+          var paymentDate= '';
+          var expiredDate= '';
+      } 
+      var dataUser= {
+        'userId':checkLogin['id'],
+        'username': checkLogin['username'],
+        'checkPayment': userPayment,
+        'paymentDate': paymentDate,
+        'expiredDate': expiredDate
+      };   
       
-      var encodedUser = new Buffer(JSON.stringify(checkLogin)).toString('base64');
+      var encodedUser = new Buffer(JSON.stringify(dataUser)).toString('base64');
       res.redirect('http://fulllook.vn/login_callback.php?user='+encodedUser); 
 
     }else res.json("False");   
