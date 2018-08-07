@@ -53,6 +53,13 @@ module.exports= {
 			type: 'number',
 			columnType: 'tinyint'
 		},
-
+		software:{
+			type: 'number',
+			columnType: 'int'
+		},
+		site:{
+			type: 'number',
+			columnType: 'int'
+		},
 	}
 };

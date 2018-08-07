@@ -172,6 +172,7 @@ module.exports.routes = {
   '/payment/payCard': {
     action: 'Payment/payCard'
   },
+  
   // Đặt thẻ
   '/payment/orderCard': {
     action: 'Payment/orderCard'
