@@ -75,6 +75,10 @@ module.exports.routes = {
   '/test/updateUserBooks':{
     action: 'Test/updateUserBooks'
   },
+  // Hàm lấy vị trí xếp hạng của bài thi
+  '/test/getRating': {
+     action: 'Test/getRating'
+  },
   // Hàm lấy chủ đề của các môn học
   '/subject/getTopics':{
     action: 'Subject/getTopics'

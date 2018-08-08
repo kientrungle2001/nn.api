@@ -76,8 +76,12 @@ module.exports = {
 			});
 			var rating =  dataRating.findIndex(element => element['id']===insertId);
 			var quantity = dataRating.length;
-			var stringRating = rating +'/' + quantity;
-			res.json(stringRating);
+			
+			var result = {
+				rating: rating,
+				total: quantity
+			};
+			res.json(result);
 		}else res.json(0);
 	},
 	

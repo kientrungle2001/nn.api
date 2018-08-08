@@ -80,7 +80,27 @@ module.exports = {
 				'answerId': answerId
 			});
 		});
+		// update bang user_book_rating
 		res.json(1);
-	}
+	},
+	// laay xep hang cua de thi
+	getRating: async function(req, res){
+		/*var userbookId = req.body.userbookId;
+		var testId = req.body.testId;*/
+		var userbookId = 786543;
+		var testId = 25;
+		/*var userId = req.body.userId;*/
+		var dataRating = await EducationUserBooks.find({
+			where: {				
+				testId: testId
+			},
+			select: ['id'],
+			sort: [{mark: 'DESC'}, {duringTime: 'DESC'}]
+		});
+		var rating =  dataRating.findIndex(element => element['id']===userbookId);
+		var quantity = dataRating.length;
+		var stringRating = rating +'/' + quantity;
+		res.json(quantity);
+	},
 	
 };
