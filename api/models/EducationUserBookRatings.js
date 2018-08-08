@@ -44,6 +44,7 @@ module.exports= {
 		created: false,
 		creatorId: false,
 		modified: false,
-		modifiedId: false
+		modifiedId: false,
+		status: false
 	}
 };

@@ -42,6 +42,7 @@ module.exports = {
 		var categoryId = req.body.categoryId;
 		var testId = req.body.testId;
 		var mark = req.body.mark;
+		var startTime = req.body.startTime;
 		var userId = req.body.userId;
 		var duringTime = req.body.duringTime;
 		var rank = req.body.rank;
@@ -59,6 +60,7 @@ module.exports = {
 			'testId' : testId,
 			'categoryId': categoryId,
 			'mark' : mark,
+			'startTime': startTime,
 			'userId' : userId,
 			'duringTime' : duringTime,
 			'rank' : rank,
@@ -74,14 +76,49 @@ module.exports = {
 			var user_book_id = userbok['id'];
 			var questionId = question['questionId'];
 			var answerId = question['answerId']; 
-			var userbok= await EducationUserBookAnswers.create({
+			var user_answers = await EducationUserBookAnswers.create({
 				'user_book_id': user_book_id,
 				'questionId': questionId,
 				'answerId': answerId
 			});
 		});
 		// update bang user_book_rating
-		
+		await EducationUserBookRatings.findOrCreate(
+			{ 
+				userId: userId ,
+				testId: testId
+			}, 
+			{ 
+				userId: userId ,
+				testId: testId,
+				startTime: startTime,
+				mark: mark,
+				duringTime: duringTime,
+				username: username,
+				name: name,
+				name_sn: name_sn,
+				software: 1
+			}
+		).exec(async(err, element, wasCreated)=> {
+		  if (err) { return res.serverError(err); }
+
+		  if(wasCreated) {
+		    //Created a new row
+		  }
+		  else { // update row		    
+		    if((element['mark']< mark) || ( (element['mark'] == mark) && (element['duringTime'] > duringTime) )){
+		    	await EducationUserBookRatings.update({
+		    		id: element['id']
+		    	}).set({
+		    		startTime: startTime,
+					mark: mark,
+					duringTime: duringTime
+		    	});		    		    	
+		    }
+
+		  }
+		  
+		});
 		res.json(1);
 	},
 	// laay xep hang cua de thi
@@ -103,20 +140,6 @@ module.exports = {
 			};
 		res.json(result);
 	},
-	// Find or Create
-	/*findOrCreate: async function(req, res){
-		User.findOrCreate({ name: 'Finn' }, { name: 'Finn' }).exec(async(err, user, wasCreated)=> {
-		  if (err) { return res.serverError(err); }
-
-		  if(wasCreated) {
-		    sails.log('Created a new user: ' + user.name);
-		  }
-		  else {
-		    sails.log('Found existing user: ' + user.name);
-		  }
-
-		  return res.json(user);
-		});
-	},*/
+	
 	
 };
