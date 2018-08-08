@@ -44,9 +44,42 @@ module.exports = {
 		var dataScores = await sails.sendNativeQuery(NAMES_OF_PETS_SQL, [ gameCode, gameTopic ]);
 		if(dataScores){
 			res.json(dataScores.rows);
-		}else res.json(0);
-		
+		}else res.json(0);		
 		
 	},
-	getGame : async function(req, res){},
+	gameSave : async function(req, res){
+		var check = req.body.check;
+		var gametopic = req.body.gametopic;
+		var gamecode = req.body.gamecode;
+		var score = req.body.score;
+		var live = req.body.live;
+		var userId = req.body.userId;				 
+		if(check== 1){
+			// insert database
+			var dataScores = await GameScores.create({
+				'gametopic': gametopic,
+				'gamecode': gamecode,
+				'score': score,
+				'live': live,
+				'userId': userId,
+				'software': 1							
+			}).fetch();
+			// lấy xếp hạng game
+			var insertId = dataScores['id'];
+			var dataRating = await GameScores.find({
+				where: {
+					gametopic: gametopic,
+					gamecode: gamecode
+				},
+				select: ['id'],
+				sort: [{score: 'DESC'}, {live: 'DESC'}]
+			});
+			var rating =  dataRating.findIndex(element => element['id']===insertId);
+			var quantity = dataRating.length;
+			var stringRating = rating +'/' + quantity;
+			res.json(stringRating);
+		}else res.json(0);
+	},
+	
+
 };

@@ -48,10 +48,6 @@ module.exports= {
 		},
 		creatorId: false,
 		modifiedId: false,
-		// lien ket voi model CoreUsers
-		userId: {
-	        model: 'CoreUsers'
-	       
-    	}
+		
 	}
 };

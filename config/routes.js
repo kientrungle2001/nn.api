@@ -188,7 +188,16 @@ module.exports.routes = {
   // Lấy Điểm Game
   '/game/getScores':{
     action: 'Game/getScores'
-  }
+  },
+  // Insert gamescore & và trả về vị trí xếp hạng
+  '/game/gameSave':{
+    action: 'Game/gameSave'
+  },
+  
+  // Lấy bảng xếp hạng đề thi
+  '/rating/getRating':{
+    action: 'Rating/getRating'
+  },
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
