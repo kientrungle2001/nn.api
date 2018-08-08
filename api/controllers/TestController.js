@@ -81,15 +81,13 @@ module.exports = {
 			});
 		});
 		// update bang user_book_rating
+		
 		res.json(1);
 	},
 	// laay xep hang cua de thi
 	getRating: async function(req, res){
-		/*var userbookId = req.body.userbookId;
-		var testId = req.body.testId;*/
-		var userbookId = 786543;
-		var testId = 25;
-		/*var userId = req.body.userId;*/
+		var userbookId = req.body.userbookId;
+		var testId = req.body.testId;				
 		var dataRating = await EducationUserBooks.find({
 			where: {				
 				testId: testId
@@ -99,8 +97,26 @@ module.exports = {
 		});
 		var rating =  dataRating.findIndex(element => element['id']===userbookId);
 		var quantity = dataRating.length;
-		var stringRating = rating +'/' + quantity;
-		res.json(quantity);
+		var result = {
+				rating: rating,
+				total: quantity
+			};
+		res.json(result);
 	},
+	// Find or Create
+	/*findOrCreate: async function(req, res){
+		User.findOrCreate({ name: 'Finn' }, { name: 'Finn' }).exec(async(err, user, wasCreated)=> {
+		  if (err) { return res.serverError(err); }
+
+		  if(wasCreated) {
+		    sails.log('Created a new user: ' + user.name);
+		  }
+		  else {
+		    sails.log('Found existing user: ' + user.name);
+		  }
+
+		  return res.json(user);
+		});
+	},*/
 	
 };
