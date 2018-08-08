@@ -184,8 +184,11 @@ module.exports.routes = {
   // Lấy Game Topic
   '/game/getTopic':{
     action: 'Game/getTopic'
+  },
+  // Lấy Điểm Game
+  '/game/getScores':{
+    action: 'Game/getScores'
   }
-  // Lấy Game
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

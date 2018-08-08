@@ -1,7 +1,7 @@
 module.exports = {
   tableName: 'user',
   attributes: {
-
+  
     name: {
         type: 'string',
         columnType: 'varchar'
@@ -82,5 +82,10 @@ module.exports = {
         type: 'ref',
         columnType: 'datetime'
     },
+    // lien ket voi model GameScores
+    ref_game_score: {
+        collection: 'GameScores',
+        via: 'userId'
+    }
   }
 };

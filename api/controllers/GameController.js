@@ -30,5 +30,23 @@ module.exports = {
 		}
 		res.json(dataGame);
 	},
-	getGame : async function(req, res){}
+	getScores: async function(req, res) {
+		var gameCode = req.body.gamecode;
+		var gameTopic = req.body.topic;					
+		var NAMES_OF_PETS_SQL = `
+		SELECT gamescore.userId,gamescore.gametopic,gamescore.gamecode,gamescore.score,user.username, user.name
+		FROM gamescore, user
+		WHERE gamescore.gamecode = $1 AND gamescore.gametopic = $2 AND gamescore.userId = user.id
+		GROUP BY gamescore.userId
+		ORDER BY gamescore.score desc
+		LIMIT 10`;
+		// Send it to the database.
+		var dataScores = await sails.sendNativeQuery(NAMES_OF_PETS_SQL, [ gameCode, gameTopic ]);
+		if(dataScores){
+			res.json(dataScores.rows);
+		}else res.json(0);
+		
+		
+	},
+	getGame : async function(req, res){},
 };
