@@ -111,14 +111,16 @@ module.exports= {
 		var mark = req.body.mark;
 		var userId = req.body.userId;
 		var duringTime = req.body.duringTime;
+		var startTime = new Date(req.body.startTime*1000);
+		var stopTime = new Date(req.body.stopTime * 1000);
 		var exercise_number = req.body.exercise_number;
 		var quantity_question = req.body.quantity_question;
-		var lang = req.body.lang;		
-		var keybook = topic + userId + duringTime;
+		var lang = req.body.lang == '' ? 'en': req.body.lang;
+		var keybook = '' + topic + userId + startTime;
 		var md5 = require('md5');
 		keybook =md5(keybook);
 		var S = require('string');
-		keybook = S(keybook).left(7).toString();
+		keybook = S(keybook).left(13).toString();
 		//update bang user_book
 		var userbook= await EducationUserBooks.create({
 			'categoryId': categoryId,
@@ -133,7 +135,9 @@ module.exports= {
 			'keybook' : keybook,
 			'software': 1,
 			'parentTest': 0,
-			'testId': 0
+			'testId': 0,
+			'startTime': startTime,
+			'stopTime':stopTime
 		}).fetch();
 		//update bang user_answers
 		questions.forEach( async function(question, index) {

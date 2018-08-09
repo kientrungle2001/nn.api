@@ -86,6 +86,10 @@ module.exports = {
         type: 'string',
         columnType: 'varchar'
     },
+    keybook: {
+        type: 'string',
+        columnType: 'varchar'
+    },
     compability: {
         type: 'number',
         columnType: 'tinyint'
