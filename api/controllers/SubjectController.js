@@ -120,7 +120,7 @@ module.exports= {
 		var S = require('string');
 		keybook = S(keybook).left(7).toString();
 		//update bang user_book
-		var userbok= await EducationUserBooks.create({
+		var userbook= await EducationUserBooks.create({
 			'categoryId': categoryId,
 			'topic': topic,
 			'mark' : mark,
@@ -131,17 +131,21 @@ module.exports= {
 			'lang' : lang,
 			'status' : 1,			
 			'keybook' : keybook,
-			'software': 1
+			'software': 1,
+			'parentTest': 0,
+			'testId': 0
 		}).fetch();
 		//update bang user_answers
 		questions.forEach( async function(question, index) {
-			var user_book_id = userbok['id'];
+			var user_book_id = userbook['id'];
 			var questionId = question['questionId'];
 			var answerId = question['answerId']; 
-			var userbok= await EducationUserBookAnswers.create({
+			var status = question['status'];
+			await EducationUserBookAnswers.create({
 				'user_book_id': user_book_id,
 				'questionId': questionId,
-				'answerId': answerId
+				'answerId': answerId,
+				'status': status
 			});
 		});
 		res.json(1);
