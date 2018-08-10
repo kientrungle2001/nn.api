@@ -1,6 +1,7 @@
 
 module.exports = {
   userRegister: async function (req, res) {
+    var url= req.body.url;
     var txtName= req.body.name;
     var txtUsername= req.body.username;
     var txtEmail= req.body.email;
@@ -12,8 +13,13 @@ module.exports = {
     var md5 = require('md5');
     txtPassword = md5(txtPassword);
     var checkLogin = await CoreUsers.findOne({username: txtUsername});
+    var result= {
+      error: 1,
+      message: ''
+    };
     if(checkLogin) {
-      res.json("Tên đăng nhập đã được sử dụng");           
+      result.message= 'Tên đăng nhập đã được sử dụng';
+      res.json(result);           
     }else{
       var now = new Date();
       var jsonDate = now.toJSON();
@@ -33,14 +39,25 @@ module.exports = {
       var dataUser= {
         'userId':createUser['id'],
         'username': createUser['username'],
+        'name': createUser['name'],
         'checkPayment': 0,
         'paymentDate': '',
         'expiredDate': ''
       };
       var encodedUser = new Buffer(JSON.stringify(dataUser)).toString('base64');
-      res.redirect('http://fulllook.vn/login_callback.php?user='+encodedUser); 
+      res.redirect(url+'/login_callback.php?user='+encodedUser); 
       //res.json('true');
     }    
+  },
+  getAreaCode: async function(req, res){
+    var dataArea= await CoreAreaCode.find({
+        where: {
+          type: 'province',
+          status: 1
+        },
+        select:['id', 'name']
+    });
+    res.json(dataArea);
   },
   signup: async function (req, res) {  },
 

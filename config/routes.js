@@ -27,14 +27,15 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
-  '/login': {
-    view: 'pages/login'
-  },
+  
   '/login/userLogin': {
     action: 'Login/userLogin'
   },
   '/register/userRegister': {
     action: 'Register/userRegister'
+  },
+  '/register/getAreaCode': {
+    action: 'Register/getAreaCode'
   },
   /*'/testApi': {
     action: 'TestApi/testApi'
