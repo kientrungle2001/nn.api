@@ -2,7 +2,8 @@
 module.exports = {
   userLogin: async function (req, res) {
     var txtUsername= req.body.username;
-    var txtPassword= req.body.password;    
+    var txtPassword= req.body.password;  
+    var url= req.body.url;    
     var md5 = require('md5');
     txtPassword = md5(txtPassword);
     
@@ -40,13 +41,14 @@ module.exports = {
       var dataUser= {
         'userId':checkLogin['id'],
         'username': checkLogin['username'],
+        'name': checkLogin['name'],
         'checkPayment': userPayment,
         'paymentDate': paymentDate,
         'expiredDate': expiredDate
       };   
       
       var encodedUser = new Buffer(JSON.stringify(dataUser)).toString('base64');
-      res.redirect('http://fulllooktdn.vn/login_callback.php?user='+encodedUser); 
+      res.redirect(url+'/login_callback.php?user='+encodedUser); 
 
     }else res.json("False");   
   },
