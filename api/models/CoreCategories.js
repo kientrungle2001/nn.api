@@ -75,7 +75,12 @@ module.exports = {
     ref_user_book:{
         collection:'EducationUserBooks',
         via: 'topic'
-    }
+    },
+    // Liên kết với model EducationUserBooks
+    /*ref_user_book_category:{
+        collection:'EducationUserBooks',
+        via: 'categoryId'
+    }*/
   },
   
 };

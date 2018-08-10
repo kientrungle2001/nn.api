@@ -102,6 +102,10 @@ module.exports = {
     topic: {
         model: 'CoreCategories'
     },
+    // Liên kết với model CoreCategories
+    /*categoryId: {
+        model: 'CoreCategories'
+    },*/
     // Liên kết với model EducationTests
     parentTest: {
         model: 'EducationTests'

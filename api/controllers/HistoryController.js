@@ -3,7 +3,7 @@ module.exports = {
   getUser: async function (req, res) {
     var userId= req.body.userId;     
     var getDataUser = await CoreUsers.findOne({id: userId}); 
-    if(getDataUser){
+    if(getDataUser){      
       res.json(getDataUser);  
     }   else res.json("False");   
   },
@@ -48,7 +48,7 @@ module.exports = {
   },
   getLessons: async function(req, res){
     var numberPage= req.body.numberPage;
-    var userId = req.body.userId;
+    var userId = req.body.userId;    
     var skipRecords = numberPage * 20;
     var dataLessons= await EducationUserBooks.find({
       where: { userId: userId, testId: 0,software: 1},
@@ -56,14 +56,19 @@ module.exports = {
       skip: skipRecords,
       limit: 20,
       sort: 'created DESC'
-    }).populate('topic');   
+    }).populate('topic');
     res.json(dataLessons); 
+  },
+  countLessons: async function(req, res){
+    var userId = req.body.userId;    
+    var quantityLessons= await EducationUserBooks.count({ userId: userId, testId: 0,software: 1});    
+    res.json(quantityLessons);
   },
   getTests: async function(req, res){
     var numberPage= req.body.numberPage;
     var userId = req.body.userId;
-    var categoryId = req.body.categoryId;
-    var compability = req.body.compability;
+    //var categoryId = req.body.categoryId;
+    var compability = req.body.compability;    
     if(compability == 1){
       var populateTest = 'parentTest';
     }else var populateTest = 'testId';
@@ -72,7 +77,7 @@ module.exports = {
       where: { 
         userId: userId,        
         compability: compability,
-        categoryId: categoryId,
+        //categoryId: categoryId,
         software: 1       
       },
       select: ['id', 'userId', 'testId','parentTest','categoryId', 'startTime', 'quantity_question', 'stopTime', 'mark', 'duringTime', 'created', 'compability', 'lang'],
@@ -81,6 +86,16 @@ module.exports = {
       sort: 'created DESC'
     }).populate(populateTest);   
     res.json(dataTests); 
+  },
+  countTests: async function(req, res){
+    var userId = req.body.userId;
+    var compability = req.body.compability;    
+    var quantityTests= await EducationUserBooks.count({
+        userId: userId,        
+        compability: compability,       
+        software: 1
+    });    
+    res.json(quantityTests);    
   },
   getDetailLesson: async function(req, res){
     var userbookId= req.body.userbookId;

@@ -125,12 +125,20 @@ module.exports.routes = {
     action:  'History/editAvatar'
   },
   // Lấy các bài luyện tập
+  '/history/countLessons':{
+    action:  'History/countLessons'
+  },
+  // Đếm các bài luyện tập
   '/history/getLessons':{
     action:  'History/getLessons'
   },
   // Lấy các đề luyện tập hoặc đề thi
   '/history/getTests':{
     action:  'History/getTests'
+  },
+  // Đếm các đề luyện tập hoặc đề thi
+  '/history/countTests':{
+    action:  'History/countTests'
   },
   // Lấy chi tiết của 1 bài tập
   '/history/getDetailLesson':{
