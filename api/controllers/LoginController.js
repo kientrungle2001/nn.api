@@ -16,14 +16,19 @@ module.exports = {
       var dateFormat = require('dateformat');
       var now = new Date();
       var formatNow= dateFormat(now, "yyyy-mm-dd HH:MM:ss");
-      var checkPayment = await EcommercePayments.findOne({
-         username: txtUsername,
+      var checkPayment = await EcommercePayments.find({
+         where: {
+          username: txtUsername,
          paymentDate: {'<=': formatNow},
          expiredDate: {'>=': formatNow},
          software: 1,
-         site: [0, 1],
+         site: [0, 1],        
+       },
+       sort: 'id DESC',
+      limit: 1
       });
       if(checkPayment){
+        checkPayment = checkPayment[0];
          var userPayment = 1;
          var paymentDate = dateFormat(checkPayment['paymentDate'], "dd-mm-yyyy");
          var expiredDate = dateFormat(checkPayment['expiredDate'], "dd-mm-yyyy");
@@ -41,7 +46,7 @@ module.exports = {
       };   
       
       var encodedUser = new Buffer(JSON.stringify(dataUser)).toString('base64');
-      res.redirect('http://fulllook.vn/login_callback.php?user='+encodedUser); 
+      res.redirect('http://fulllooktdn.vn/login_callback.php?user='+encodedUser); 
 
     }else res.json("False");   
   },
