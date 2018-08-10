@@ -15,6 +15,8 @@ module.exports = {
     var txtAddress= req.body.address; 
     var txtBirthday= req.body.birthday; 
     var txtSex= req.body.sex;
+    var txtSchool= req.body.schoolname;
+    var txtClass= req.body.classname;
     var txtAreacode= req.body.areacode; 
     var dateUpdate = await CoreUsers.update({id: txtUserId}).set({
       'name': txtName,      
@@ -23,9 +25,14 @@ module.exports = {
       'address': txtAddress,
       'birthday': txtBirthday,
       'sex': txtSex,
+      'classname': txtClass,
+      'schoolname': txtSchool,
       'areacode': txtAreacode,
+    });    
+    res.json({
+      success: 1,
+      message:'Cập nhật thành công!'
     });
-    res.json(1);
   },
   editPassword: async function(req, res){
     var txtUserId= req.body.userId;
@@ -37,8 +44,14 @@ module.exports = {
     if(md5(txtOldPassword) == password ){
         var md5NewPassword = md5(txtNewPassword);
         await CoreUsers.update({id: txtUserId}).set({'password':md5NewPassword});
-        res.json(1);
-    }else res.json('Mật khẩu cũ chưa đúng !');
+        res.json({
+          success: 1,
+          message: 'Thay đổi thành công!'
+        });
+    }else res.json({
+      success: 0,
+      message: 'Mật khẩu cũ chưa đúng.'
+    });
   },
   editAvatar: async function(req, res){
     var txtUserId= req.body.userId;

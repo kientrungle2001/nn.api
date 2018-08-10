@@ -115,17 +115,17 @@ module.exports = {
         model: 'CoreCategories'
     },*/
     // Liên kết với model EducationTests
-    /*
+    
     parentTest: {
         model: 'EducationTests'
     },
-    */
+    
     // Liên kết với model EducationTests
-    /*
+    
     testId: {
         model: 'EducationTests'
     },
-    */
+    
     // Liên kết với model EducationUserBookAnswers
     ref_userbook_answers: {
         collection: 'EducationUserBookAnswers',

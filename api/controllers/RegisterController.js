@@ -15,6 +15,7 @@ module.exports = {
     var checkLogin = await CoreUsers.findOne({username: txtUsername});
     var result= {
       error: 1,
+      success: 0,
       message: ''
     };
     if(checkLogin) {
@@ -45,12 +46,16 @@ module.exports = {
         'expiredDate': ''
       };
       var encodedUser = new Buffer(JSON.stringify(dataUser)).toString('base64');
-      res.redirect(url+'/login_callback.php?user='+encodedUser); 
-      //res.json('true');
-    }    
+      //res.redirect(url+'/login_callback.php?user='+encodedUser); 
+      result.success = 1;
+      result.error= 0;
+      result.message= 'Đăng ký thành công';
+      result.url= url+'/login_callback.php?user='+encodedUser;
+    } 
+    res.json(result);   
   },
   getAreaCode: async function(req, res){
-    var dataArea= await CoreAreaCode.find({
+    var dataArea = await CoreAreaCode.find({
         where: {
           type: 'province',
           status: 1

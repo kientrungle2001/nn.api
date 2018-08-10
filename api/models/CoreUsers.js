@@ -62,6 +62,10 @@ module.exports = {
         type: 'string',
         columnType: 'varchar'
     },
+    schoolname: {
+        type: 'string',
+        columnType: 'varchar'
+    },
     registeredAtSoftware: {
         type: 'number',
         columnType: 'int'
