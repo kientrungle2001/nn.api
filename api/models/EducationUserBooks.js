@@ -139,6 +139,7 @@ module.exports = {
         collection: 'EducationUserBookAnswers',
         via: 'user_book_id'
     }
+    
 
   }
 };

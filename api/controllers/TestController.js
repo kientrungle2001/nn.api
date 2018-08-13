@@ -42,8 +42,10 @@ module.exports = {
 		var categoryId = req.body.categoryId;
 		var testId = req.body.testId;
 		var mark = req.body.mark;
-		var startTime = req.body.startTime;
+		var startTime = new Date(req.body.startTime * 1000);
+		var stopTime = new Date(req.body.stopTime * 1000);
 		var userId = req.body.userId;
+		var username = req.body.username;
 		var duringTime = req.body.duringTime;
 		var rank = req.body.rank;
 		var quantity_question = req.body.quantity_question;
@@ -61,6 +63,7 @@ module.exports = {
 			'categoryId': categoryId,
 			'mark' : mark,
 			'startTime': startTime,
+			'stopTime': stopTime,
 			'userId' : userId,
 			'duringTime' : duringTime,
 			'rank' : rank,
