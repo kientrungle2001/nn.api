@@ -102,23 +102,31 @@ module.exports = {
         type: 'number',
         columnType: 'int'
     },
+    topic: {
+        type: 'number',
+        columnType: 'int'
+    },
     software:{
         type: 'number',
         columnType: 'int'
     },
     // Liên kết với model CoreCategories
+    /*
     topic: {
         model: 'CoreCategories'
     },
+    */
     // Liên kết với model CoreCategories
     /*categoryId: {
         model: 'CoreCategories'
     },*/
     // Liên kết với model EducationTests
     
+    /*
     parentTest: {
         model: 'EducationTests'
     },
+    */
     
     // Liên kết với model EducationTests
     
