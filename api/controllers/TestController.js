@@ -53,6 +53,8 @@ module.exports = {
 		var compability = req.body.compability;
 		var parentTest = req.body.parentTest;		
 		var keybook = testId + userId + duringTime;
+		var test_name = req.body.test_name;
+		var test_name_sn = req.body.test_name_sn;
 		var md5 = require('md5');
 		keybook =md5(keybook);
 		var S = require('string');
@@ -98,8 +100,8 @@ module.exports = {
 				mark: mark,
 				duringTime: duringTime,
 				username: username,
-				name: name,
-				name_sn: name_sn,
+				name: test_name,
+				name_sn: test_name_sn,
 				software: 1
 			}
 		).exec(async(err, element, wasCreated)=> {
