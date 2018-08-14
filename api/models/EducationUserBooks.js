@@ -111,22 +111,22 @@ module.exports = {
         columnType: 'int'
     },
     // Liên kết với model CoreCategories
-    /*
+    
     topic: {
         model: 'CoreCategories'
     },
-    */
+    
     // Liên kết với model CoreCategories
     /*categoryId: {
         model: 'CoreCategories'
     },*/
     // Liên kết với model EducationTests
     
-    /*
+    
     parentTest: {
         model: 'EducationTests'
     },
-    */
+    
     
     // Liên kết với model EducationTests
     
