@@ -4,7 +4,7 @@ module.exports= {
 		var dataNews = await CmsNews.find({
 			where:{'categoryId': categoryId, 'status': 1},			
 			sort: 'ordering ASC'
-		}).populate('ref_new_comments');
+		});
 		res.json(dataNews);
 	},
 	getGifts: async function(req, res){
@@ -16,10 +16,10 @@ module.exports= {
 			categoryIds.push(dataCategories[i].id);
 		}
 		var dataNews = await CmsNews.find({
-			where:{'status': 1, categoryId: categoryIds},
+			where:{status: 1, categoryId: categoryIds},
 			sort: 'ordering ASC',
 			limit: 5
-		}).populate('ref_new_comments');
+		});
 		res.json(dataNews);
 	},
 	postComments: async function(req, res){
