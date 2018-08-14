@@ -22,17 +22,17 @@ module.exports= {
 		});
 		res.json(dataNews);
 	},
-	postComments: async function(req, res){
+	postComment: async function(req, res){
 		var newsId = req.body.newsId;
 		var content = req.body.content;
 		var userId = req.body.userId;
 		var ip = req.body.ip;
-		var createCommnet = await CmsNewComments.create({
+		var createdComment = await CmsNewComments.create({
 			'newsId': newsId,
 			'content': content,
 			'userId': userId,
 			'ip': ip
 		}).fetch();
-		res.json(createCommnet);
+		res.json(createdComment);
 	}
 };
