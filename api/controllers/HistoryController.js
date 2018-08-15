@@ -90,6 +90,7 @@ module.exports = {
       where: { 
         userId: userId,        
         compability: compability,
+         testId : {'>': 0},    
         //categoryId: categoryId,
         software: 1       
       },
@@ -105,7 +106,8 @@ module.exports = {
     var compability = req.body.compability;    
     var quantityTests= await EducationUserBooks.count({
         userId: userId,        
-        compability: compability,       
+        compability: compability,   
+        testId : {'>': 0},    
         software: 1
     });    
     res.json(quantityTests);    
@@ -126,7 +128,7 @@ module.exports = {
     var questionIds = req.body.questionIds;    
     var dataQuestions = await EducationQuestions.find({
       where: {
-        'status': 1,
+        
         'id': {in:questionIds }   
         /*'id': { in : [5196, 5200, 5206, 5207, 5208]} */       
       },

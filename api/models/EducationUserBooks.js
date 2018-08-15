@@ -109,7 +109,8 @@ module.exports = {
     software:{
         type: 'number',
         columnType: 'int'
-    },
+    },    
+
     // Liên kết với model CoreCategories
     
     topic: {

@@ -99,12 +99,12 @@ module.exports = {
         columnType: 'tinyint'
     },
     // Liên kết với model EducationUserBooks
-    /*
+    
     ref_user_book:{
         collection:'EducationUserBooks',
         via: 'parentTest'
     },
-    */
+    
     // Liên kết với model EducationUserBooks
     /*
     ref_user_book_test:{
