@@ -28,5 +28,9 @@ module.exports= {
 		creatorId: false,
 		modified: false,
 		modifiedId: false,
+		ref_qusestion_answers : {
+			collection: 'AqsQuestionAnswers',
+			via: 'questionId'
+		}
 	},
 };

@@ -9,10 +9,10 @@ module.exports = {
 			skip: skipNumber,
 			limit : 6,
 			sort: 'id DESC'
-		});
+		}).populate('ref_qusestion_answers');
 		res.json(dataQuestions);
 	},
-	getQuestionAswers : async function(req, res){
+	/*getQuestionAswers : async function(req, res){
 		var questionIds = req.body.questionIds;
 		var dataAnswers= await AqsQuestionAnswers.find({
 			where: {
@@ -21,7 +21,7 @@ module.exports = {
 			}
 		});
 		res.json(dataAnswers);
-	},
+	},*/
 	countQuestionAswers: async function(req, res){
 		var questionId = req.body.questionId;
 		var count = await AqsQuestionAnswers.count({'questionId': questionId});

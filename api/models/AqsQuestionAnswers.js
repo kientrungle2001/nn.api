@@ -28,5 +28,8 @@ module.exports= {
 		creatorId: false,
 		modified: false,
 		modifiedId: false,
+		questionId: {
+			model: 'AqsQuestions'
+		}
 	},
 };
