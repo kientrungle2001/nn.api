@@ -63,14 +63,24 @@ module.exports = {
     var numberPage= req.body.numberPage;
     var userId = req.body.userId;    
     var skipRecords = numberPage * 20;
-    var dataLessons= await EducationUserBooks.find({
+    
+    var dataLessonSql = `
+    SELECT user_book.id,user_book.userId,user_book.categoryId, categories.name,user_book.startTime,user_book.quantity_question,user_book.stopTime, user_book.mark, user_book.duringTime, user_book.created, user_book.exercise_number, user_book.topic, user_book.lang
+    FROM user_book, categories
+    WHERE user_book.topic = categories.id AND user_book.userId = $1
+    ORDER BY user_book.id desc
+    LIMIT 20
+    OFFSET `+skipRecords;
+    // Send it to the database.
+    var dataLessons = await sails.sendNativeQuery(dataLessonSql, [userId]);
+    /*var dataLessons= await EducationUserBooks.find({
       where: { userId: userId, testId: 0,software: 1},
       select: ['id', 'userId', 'categoryId', 'startTime', 'quantity_question', 'stopTime', 'mark', 'duringTime', 'created', 'exercise_number', 'topic', 'lang'],
       skip: skipRecords,
       limit: 20,
       sort: 'created DESC'
-    }).populate('topic');
-    res.json(dataLessons); 
+    }).populate('topic');*/
+    res.json(dataLessons.rows); 
   },
   countLessons: async function(req, res){
     var userId = req.body.userId;    
@@ -82,24 +92,31 @@ module.exports = {
     var userId = req.body.userId;
     //var categoryId = req.body.categoryId;
     var compability = req.body.compability;    
-    if(compability == 1){
+    /*if(compability == 1){
       var populateTest = 'parentTest';
-    }else var populateTest = 'testId';
+    }else var populateTest = 'testId';*/
     var skipRecords = numberPage * 20;
-    var dataTests= await EducationUserBooks.find({
-      where: { 
-        userId: userId,        
-        compability: compability,
-         testId : {'>': 0},    
-        //categoryId: categoryId,
-        software: 1       
-      },
-      select: ['id', 'userId', 'testId','parentTest','categoryId', 'startTime', 'quantity_question', 'stopTime', 'mark', 'duringTime', 'created', 'compability', 'lang'],
-      skip: skipRecords,
-      limit: 20,
-      sort: 'created DESC'
-    }).populate(populateTest);   
-    res.json(dataTests); 
+    if(compability == 1){
+      var dataTestSql = `
+      SELECT user_book.id,user_book.userId,user_book.testId, tests.name,user_book.startTime,user_book.quantity_question,user_book.stopTime, user_book.mark, user_book.duringTime, user_book.created, user_book.compability, user_book.lang
+      FROM user_book, tests
+      WHERE user_book.testId = tests.id  AND user_book.compability = $1 AND user_book.userId = $2 
+      ORDER BY user_book.id desc
+      LIMIT 20
+      OFFSET `+skipRecords;
+    }else{
+      var dataTestSql = `
+      SELECT user_book.id,user_book.userId,user_book.testId, tests.name,user_book.startTime,user_book.quantity_question,user_book.stopTime, user_book.mark, user_book.duringTime, user_book.created, user_book.compability, user_book.lang
+      FROM user_book, tests
+      WHERE user_book.testId = tests.id AND user_book.compability = $1 AND user_book.userId = $2   
+      ORDER BY user_book.id desc
+      LIMIT 20
+      OFFSET `+skipRecords;
+    }
+    
+    // Send it to the database.
+    var dataTests = await sails.sendNativeQuery(dataTestSql, [compability, userId]);      
+    res.json(dataTests.rows); 
   },
   countTests: async function(req, res){
     var userId = req.body.userId;

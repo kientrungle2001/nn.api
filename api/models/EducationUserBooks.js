@@ -113,9 +113,9 @@ module.exports = {
 
     // Liên kết với model CoreCategories
     
-    topic: {
+   /* topic: {
         model: 'CoreCategories'
-    },
+    },*/
     
     // Liên kết với model CoreCategories
     /*categoryId: {
@@ -124,16 +124,16 @@ module.exports = {
     // Liên kết với model EducationTests
     
     
-    parentTest: {
+    /*parentTest: {
         model: 'EducationTests'
-    },
+    },*/
     
     
     // Liên kết với model EducationTests
     
-    testId: {
+    /*testId: {
         model: 'EducationTests'
-    },
+    },*/
     
     // Liên kết với model EducationUserBookAnswers
     ref_userbook_answers: {
