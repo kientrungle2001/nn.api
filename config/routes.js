@@ -169,6 +169,10 @@ module.exports.routes = {
   '/aqs/getQuestions': {
     action: 'Aqs/getQuestions'
   },
+  // Đếm số câu hỏi
+  '/aqs/countQuestions': {
+    action: 'Aqs/countQuestions'
+  },
   // Lấy danh sách câu trả lời trong mục HỎi đáp Aqs
   '/aqs/getQuestionAswers': {
     action: 'Aqs/getQuestionAswers'

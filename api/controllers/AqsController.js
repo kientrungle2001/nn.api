@@ -23,7 +23,7 @@ module.exports = {
 		res.json(dataAnswers);
 	},*/
 	countQuestions: async function(req, res){		
-		var count = await AqsQuestions.count();
+		var count = await AqsQuestions.count({'status': 1});
 		res.json(count);
 	},
 	countQuestionAswers: async function(req, res){
