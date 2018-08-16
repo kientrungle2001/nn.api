@@ -22,6 +22,10 @@ module.exports = {
 		});
 		res.json(dataAnswers);
 	},*/
+	countQuestions: async function(req, res){		
+		var count = await AqsQuestions.count();
+		res.json(count);
+	},
 	countQuestionAswers: async function(req, res){
 		var questionId = req.body.questionId;
 		var count = await AqsQuestionAnswers.count({'questionId': questionId});
