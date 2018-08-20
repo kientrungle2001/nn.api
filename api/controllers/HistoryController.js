@@ -55,9 +55,12 @@ module.exports = {
   },
   editAvatar: async function(req, res){
     var txtUserId= req.body.userId;
-    var urlAvatar = req.body.avatar;
+    var urlAvatar = req.body.urlAvatar;
     await CoreUsers.update({id: txtUserId}).set({'avatar':urlAvatar});
-    res.json(1);
+    res.json({
+          success: 1,
+          message: 'Thay đổi thành công!'
+        });
   },
   getLessons: async function(req, res){
     var numberPage= req.body.numberPage;
