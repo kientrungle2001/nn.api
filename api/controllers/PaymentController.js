@@ -13,13 +13,17 @@ module.exports = {
 			'expiredDate': '00-00-000 00:00:00'
 		};
 
-		var checkCard = await EcommercePayCards.findOne({
-			'pincard': pinCard,
-			'software': 1,
-			'site': [0, 1],
+		var checkCard = await EcommercePayCards.find({
+			where: {
+				'pincard': pinCard,
+				'software': 1,
+				'site': [0, 1],
+			},
+			limit: 1
 		});
 		var dateFormat = require('dateformat');
-		if(checkCard){
+		if(checkCard[0]){
+			checkCard = checkCard[0];
 			if(checkCard['status'] == 1){
 				// The chua nap
 				var now = new Date();

@@ -7,19 +7,14 @@ module.exports = {
     var md5 = require('md5');
     txtPassword = md5(txtPassword);
     
-    var checkLogin = await CoreUsers.findOne(
-      {
-        username: txtUsername
-      }
-    );
-    if(checkLogin) {
-      var checkPass = await CoreUsers.findOne(
-        {
-          username: txtUsername,
-          password: txtPassword
-        }
-      );
-      if(checkPass){
+    var checkLogin = await CoreUsers.find({
+      where: {username: txtUsername},
+      limit: 1
+    });
+    console.log(checkLogin);
+    if(checkLogin[0]) {
+      checkLogin = checkLogin[0];        
+      if(checkLogin['password'] == txtPassword){        
         //check payment
         var dateFormat = require('dateformat');
         var now = new Date();
@@ -33,7 +28,7 @@ module.exports = {
            site: [0, 1],        
          },
          sort: 'id DESC',
-        limit: 1
+         limit: 1
         });
         if(checkPayment){
           checkPayment = checkPayment[0];

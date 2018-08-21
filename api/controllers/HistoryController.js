@@ -2,9 +2,12 @@
 module.exports = {
   getUser: async function (req, res) {
     var userId= req.body.userId;     
-    var getDataUser = await CoreUsers.findOne({id: userId}); 
+    var getDataUser = await CoreUsers.find({
+      where: {id: userId},
+      limit: 1
+    }); 
     if(getDataUser){      
-      res.json(getDataUser);  
+      res.json(getDataUser[0]);  
     }   else res.json("False");   
   },
   editUser: async function(req, res){     
@@ -38,8 +41,11 @@ module.exports = {
     var txtUserId= req.body.userId;
     var txtOldPassword= req.body.oldPassword;
     var txtNewPassword= req.body.newPassword;    
-    var getDataUser = await CoreUsers.findOne({id: txtUserId});
-    var password = getDataUser['password'];
+    var getDataUser = await CoreUsers.find({
+      where: {id: txtUserId},
+      limit: 1
+    });
+    var password = getDataUser[0]['password'];
     var md5 = require('md5');
     if(md5(txtOldPassword) == password ){
         var md5NewPassword = md5(txtNewPassword);
@@ -137,11 +143,12 @@ module.exports = {
     var userId= req.body.userId;    
    /* var userbookId = 786532;
     var userId= 15852;*/    
-    var dataUserBook = await EducationUserBooks.findOne({
+    var dataUserBook = await EducationUserBooks.find({
       where: {id: userbookId, userId: userId},
-      select: ['id', 'quantity_question','testId', 'mark','lang']
+      select: ['id', 'quantity_question','testId', 'mark','lang'],
+      limit: 1
     }).populate('ref_userbook_answers');    
-    res.json(dataUserBook);
+    res.json(dataUserBook[0]);
   },
   getQuestionAnswers: async function(req, res){
     // Lay danh sach cac cau hoi va tra loi tu bang questions
@@ -160,11 +167,12 @@ module.exports = {
   getDetailTest: async function(req, res){
     var userbookId= req.body.userbookId;
     var userId= req.body.userId;
-    var dataUserBook = await EducationUserBooks.findOne({
+    var dataUserBook = await EducationUserBooks.find({
       where: {id: userbookId, userId: userId},
-      select: ['id', 'quantity_question', 'mark']
+      select: ['id', 'quantity_question', 'mark'],
+      limit: 1
     }).populate('ref_userbook_answers');    
-    res.json(dataUserBook);
+    res.json(dataUserBook[0]);
   },
   
   signup: async function (req, res) {  },

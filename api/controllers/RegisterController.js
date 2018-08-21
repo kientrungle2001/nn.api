@@ -12,13 +12,16 @@ module.exports = {
     var txtAreacode= req.body.areacode; 
     var md5 = require('md5');
     txtPassword = md5(txtPassword);
-    var checkLogin = await CoreUsers.findOne({username: txtUsername});
+    var checkLogin = await CoreUsers.find({
+      where: {username: txtUsername},
+      limit: 1
+    });
     var result= {
       error: 1,
       success: 0,
       message: ''
     };
-    if(checkLogin) {
+    if(checkLogin[0]) {
       result.message= 'Tên đăng nhập đã được sử dụng';
       res.json(result);           
     }else{

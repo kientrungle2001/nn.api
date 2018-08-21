@@ -3,11 +3,14 @@ module.exports = {
 	// Hàm trả về 1 bản ghi trong bảng test, với input: testId
 	getTest: async function(req, res){
 		var testId= req.body.test_id;
-		var dataTest= await EducationTests.findOne({
-			'id': testId,
-			'software': 1
+		var dataTest= await EducationTests.find({
+			where: {
+				'id': testId,
+				'software': 1
+			},
+			limit: 1
 		});
-		res.json(dataTest);
+		res.json(dataTest[0]);
 
 	},
 	//Hàm trả về mảng các câu hỏi và câu trả lời( đề trắc nghiệm ) với input testId
