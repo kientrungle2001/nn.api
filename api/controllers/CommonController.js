@@ -16,7 +16,7 @@ module.exports = {
   	categoryId = '%,'+categoryId+',%';
     var showData = await EducationTests.find({
         where: {
-        	'practice': 1,
+        	//'practice': 1,
           'software': 1,
 	        //'displayAtSite': [0,1],
 	        'status': 1,
@@ -30,14 +30,14 @@ module.exports = {
   },
   // Hiển thị danh sách các đề thi thu
   getTestSets : async function(req,res){
-  	/*var categoryId = req.body.categoryId;
-  	var compability = req.body.compability;*/
+  	var categoryId = req.body.categoryId;
+  	/*var compability = req.body.compability;
   	var categoryId = 383;
-  	var compability =1;
+  	var compability =1;*/
   	categoryId = '%,'+categoryId+',%';
     var showData = await EducationTests.find({
         where: {
-        	'compability': compability,
+        	//'compability': compability,
 	        'status': 1,
           'software': 1,
           'displayAtSite': [0,1],
