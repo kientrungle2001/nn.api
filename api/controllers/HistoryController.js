@@ -81,14 +81,7 @@ module.exports = {
     LIMIT 20
     OFFSET `+skipRecords;
     // Send it to the database.
-    var dataLessons = await sails.sendNativeQuery(dataLessonSql, [userId]);
-    /*var dataLessons= await EducationUserBooks.find({
-      where: { userId: userId, testId: 0,software: 1},
-      select: ['id', 'userId', 'categoryId', 'startTime', 'quantity_question', 'stopTime', 'mark', 'duringTime', 'created', 'exercise_number', 'topic', 'lang'],
-      skip: skipRecords,
-      limit: 20,
-      sort: 'created DESC'
-    }).populate('topic');*/
+    var dataLessons = await sails.sendNativeQuery(dataLessonSql, [userId]);    
     res.json(dataLessons.rows); 
   },
   countLessons: async function(req, res){
@@ -99,13 +92,16 @@ module.exports = {
   getTests: async function(req, res){
     var numberPage= req.body.numberPage;
     var userId = req.body.userId;
-    //var categoryId = req.body.categoryId;
-    var compability = req.body.compability;    
-    /*if(compability == 1){
-      var populateTest = 'parentTest';
-    }else var populateTest = 'testId';*/
+    var categoryId = req.body.categoryId;
     var skipRecords = numberPage * 20;
-    if(compability == 1){
+    var dataTestSql = `
+      SELECT user_book.id,user_book.userId,user_book.testId,user_book.categoryId, tests.name,user_book.startTime,user_book.quantity_question,user_book.stopTime, user_book.mark, user_book.duringTime, user_book.created, user_book.compability, user_book.lang
+      FROM user_book, tests
+      WHERE user_book.testId = tests.id  AND user_book.categoryId = $1 AND user_book.userId = $2 
+      ORDER BY user_book.id desc
+      LIMIT 20
+      OFFSET `+skipRecords;
+    /*if(compability == 1){
       var dataTestSql = `
       SELECT user_book.id,user_book.userId,user_book.testId, tests.name,user_book.startTime,user_book.quantity_question,user_book.stopTime, user_book.mark, user_book.duringTime, user_book.created, user_book.compability, user_book.lang
       FROM user_book, tests
@@ -121,18 +117,18 @@ module.exports = {
       ORDER BY user_book.id desc
       LIMIT 20
       OFFSET `+skipRecords;
-    }
+    }*/
     
     // Send it to the database.
-    var dataTests = await sails.sendNativeQuery(dataTestSql, [compability, userId]);      
+    var dataTests = await sails.sendNativeQuery(dataTestSql, [categoryId, userId]);      
     res.json(dataTests.rows); 
   },
   countTests: async function(req, res){
     var userId = req.body.userId;
-    var compability = req.body.compability;    
+    var categoryId = req.body.categoryId;    
     var quantityTests= await EducationUserBooks.count({
         userId: userId,        
-        compability: compability,   
+        categoryId: categoryId,   
         testId : {'>': 0},    
         software: 1
     });    
