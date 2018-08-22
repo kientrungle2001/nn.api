@@ -214,7 +214,10 @@ module.exports.routes = {
   '/game/gameSave':{
     action: 'Game/gameSave'
   },
-  
+  //saveGameVocabunary
+  '/game/saveGameVocabunary':{
+    action: 'Game/saveGameVocabunary'
+  },
   // Lấy bảng xếp hạng đề thi
   '/rating/getRating':{
     action: 'Rating/getRating'

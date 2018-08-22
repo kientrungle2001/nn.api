@@ -84,6 +84,31 @@ module.exports = {
 			res.json(result);
 		}else res.json(0);
 	},
+	saveGameVocabunary : async function(req, res){
+		var gameCode = req.body.gameCode;
+		//JSON.parse();
+		var trueWords = JSON.stringify(req.body.trueWords);
+		var score = req.body.score;
+		var totalWord = req.body.totalWord;
+		var userId = req.body.userId;
+		var cateId = req.body.cateId;
+		var documentId = req.body.documentId;
+		var dataScores = await GameScores.create({
+			'gamecode': gameCode,
+			'score': score,
+			'userId': userId,
+			'software': 1,
+			'documentId': documentId,
+			'trueWords': trueWords,
+			'totalWord': totalWord,
+			'categoryId': cateId
+		}).fetch();
+		var result = {
+			trueWords: trueWords,
+			score: score,
+			totalWord: totalWord
+		}
+		res.json(result);
+	}
 	
-
 };
