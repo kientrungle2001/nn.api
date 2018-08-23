@@ -22,6 +22,11 @@ module.exports = {
         type: 'number',
         columnType: 'int'
     },
+    time: {
+        type: 'number',
+        columnType: 'int'
+    },
+      
     trial: {
         type: 'number',
         columnType: 'tinyint'
