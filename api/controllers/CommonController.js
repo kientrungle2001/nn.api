@@ -19,7 +19,7 @@ module.exports = {
         	//'practice': 1,
           'software': 1,
 	        //'displayAtSite': [0,1],
-	        'status': 1,
+	        // 'status': 1,
 	        'categoryIds': {like :categoryId }
         },
         sort: 'ordering ASC'
@@ -38,7 +38,7 @@ module.exports = {
     var showData = await EducationTests.find({
         where: {
         	//'compability': compability,
-	        'status': 1,
+	        // 'status': 1,
           'software': 1,
           'displayAtSite': [0,1],
 	        'classes': {like: '%,5,%'},
