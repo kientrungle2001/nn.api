@@ -7,12 +7,12 @@ module.exports= {
 			where: {
 				'status': 1,
 				'display': 1,
-				'document': 0,
+				//'document': 0,
 				'parents': { like: subject_id},
 				'classes': {like : '%,5,%'},
 				'software': 1,
 				'site': [0, 1],
-				//'displayAtSite': [0, 1]
+				'displayAtSite': [0, 1]
 			},
 			sort: 'ordering ASC'
 		});
@@ -30,6 +30,7 @@ module.exports= {
 				'classes': {like : '%,5,%'},
 				'software': 1,
 				'site': [0, 1],
+				'displayAtSite': [0, 1]
 			},
 			sort: 'ordering ASC'
 		});

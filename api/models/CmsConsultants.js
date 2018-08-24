@@ -1,5 +1,5 @@
 module.exports={
-	tableName: 'consultants',
+	tableName: 'consultant',
 	attributes: {
 		name: {
 			type: 'string',

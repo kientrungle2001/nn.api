@@ -116,6 +116,9 @@ module.exports = {
   		'phone': phone,
   		'status': 1
   	});
-  	return res.json(1);
+  	res.json({
+      'success': 1,
+      'message': 'Bạn đã đăng ký thành công, chúng tôi sẽ sớm liên hệ lại với bạn!'
+    });
   }
 };
