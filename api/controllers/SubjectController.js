@@ -14,7 +14,7 @@ module.exports= {
 				'site': [0, 1],
 				'displayAtSite': [0, 1]
 			},
-			sort: 'ordering ASC'
+			sort: ['ordering ASC','id ASC']
 		});
 		return res.json(dataTopics);
 	},

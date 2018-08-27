@@ -11,10 +11,11 @@ module.exports = {
       where: {username: txtUsername},
       limit: 1
     });
-    console.log(checkLogin);
+    
     if(checkLogin[0]) {
       checkLogin = checkLogin[0];        
-      if(checkLogin['password'] == txtPassword){        
+      if(checkLogin['password'] == txtPassword){ 
+
         //check payment
         var dateFormat = require('dateformat');
         var now = new Date();
@@ -30,7 +31,7 @@ module.exports = {
          sort: 'id DESC',
          limit: 1
         });
-        if(checkPayment){
+        if(checkPayment[0]){
           checkPayment = checkPayment[0];
            var userPayment = 1;
            var paymentDate = dateFormat(checkPayment['paymentDate'], "dd-mm-yyyy");
