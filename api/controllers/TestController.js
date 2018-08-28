@@ -154,13 +154,13 @@ module.exports = {
 			'or': [
 				{
 					mark: {
-						'<': mark
+						'>': mark
 					}
 				},
 				{
 					mark: mark,
 					duringTime: {
-						'>' : duringTime
+						'<' : duringTime
 					}
 				}
 			]
