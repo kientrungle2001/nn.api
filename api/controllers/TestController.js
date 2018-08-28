@@ -61,9 +61,9 @@ module.exports = {
 		var md5 = require('md5');
 		keybook =md5(keybook);
 		var S = require('string');
-		keybook = S(keybook).left(7).toString();
+		keybook = S(keybook).left(13).toString();
 		//update bang user_book
-		var userbok= await EducationUserBooks.create({
+		var userbook= await EducationUserBooks.create({
 			'testId' : testId,
 			'categoryId': categoryId,
 			'mark' : mark,
@@ -81,7 +81,7 @@ module.exports = {
 		}).fetch();
 		//update bang user_answers
 		questions.forEach( async function(question, index) {
-			var user_book_id = userbok['id'];
+			var user_book_id = userbook['id'];
 			var questionId = question['questionId'];
 			var answerId = question['answerId']; 
 			var user_answers = await EducationUserBookAnswers.create({
@@ -91,6 +91,7 @@ module.exports = {
 			});
 		});
 		// update bang user_book_rating
+		
 		await EducationUserBookRatings.findOrCreate(
 			{ 
 				userId: userId ,
@@ -109,7 +110,7 @@ module.exports = {
 			}
 		).exec(async(err, element, wasCreated)=> {
 		  if (err) { return res.serverError(err); }
-
+		  
 		  if(wasCreated) {
 		    //Created a new row
 		  }
@@ -125,27 +126,49 @@ module.exports = {
 		    }
 
 		  }
-		  
 		});
-		res.json(1);
+		var rating = await EducationUserBookRatings.findOne({
+			userId: userId,
+			testId: testId
+		});
+		var result = {
+			success: 1,
+			error: 0,
+			data: {
+				userbookId: userbook.id,
+				rating: rating
+			}
+		};
+		res.json(result);
 	},
 	// laay xep hang cua de thi
 	getRating: async function(req, res){
-		var userbookId = req.body.userbookId;
-		var testId = req.body.testId;				
-		var dataRating = await EducationUserBooks.find({
-			where: {				
-				testId: testId
-			},
-			select: ['id'],
-			sort: [{mark: 'DESC'}, {duringTime: 'DESC'}]
+		var testId = parseInt(req.body.testId);
+		var mark = parseFloat(req.body.mark);
+		var duringTime = parseInt(req.body.duringTime);
+		var totalRating = await EducationUserBooks.count({
+			testId: testId
 		});
-		var rating =  dataRating.findIndex(element => element['id']===userbookId);
-		var quantity = dataRating.length;
+		var userRating = await EducationUserBooks.count({
+			testId: testId,
+			'or': [
+				{
+					mark: {
+						'<': mark
+					}
+				},
+				{
+					mark: mark,
+					duringTime: {
+						'>' : duringTime
+					}
+				}
+			]
+		});
 		var result = {
-				rating: rating,
-				total: quantity
-			};
+			rating: userRating,
+			total: totalRating
+		};
 		res.json(result);
 	},
 	

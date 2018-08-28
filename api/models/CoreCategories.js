@@ -71,6 +71,10 @@ module.exports = {
         type: 'number',
         columnType: 'int'
     },
+    trial: {
+        type: 'number',
+        columnType: 'int'
+    },
     // Liên kết với model EducationUserBooks
     
    /* ref_user_book:{
