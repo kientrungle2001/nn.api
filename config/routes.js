@@ -110,20 +110,20 @@ module.exports.routes = {
   },
   // Hien thi lich su hoc tap cua hs
   // Lay thông tin của hs
-  '/history/getUser':{
-    action:  'History/getUser'
+  '/profile/getUser':{
+    action:  'Profile/getUser'
   },
   // Sửa thông tin của hs
-  '/history/editUser':{
-    action:  'History/editUser'
+  '/profile/editUser':{
+    action:  'Profile/editUser'
   },
   // Đổi mật khẩu
-  '/history/editPassword':{
-    action:  'History/editPassword'
+  '/profile/editPassword':{
+    action:  'Profile/editPassword'
   },
   // Đổi avata
-  '/history/editAvatar':{
-    action:  'History/editAvatar'
+  '/profile/editAvatar':{
+    action:  'Profile/editAvatar'
   },
   // Lấy các bài luyện tập
   '/history/countLessons':{
