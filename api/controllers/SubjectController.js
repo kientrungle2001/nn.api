@@ -54,8 +54,12 @@ module.exports= {
 	},
 	// Lấy danh sách bài tập
 	getExercises: async function(req, res){
-		var subject_id = req.body.subject_id;
-		var topic_id = req.body.topic_id;
+		var subject_id = parseInt(req.body.subject_id);
+		var page_limit = 5;
+		if( subject_id === 88) {
+			page_limit = 10;
+		}
+		var topic_id = parseInt(req.body.topic_id);
 		topic_id = '%,'+topic_id+',%';
 		var getQuantity = await EducationQuestions.count({
 			where: {
@@ -65,15 +69,20 @@ module.exports= {
 				'software': 1					
 			}
 		});
-		getQuantity = Math.ceil(getQuantity/5);
+		getQuantity = Math.ceil(getQuantity/page_limit);
 		return res.json(getQuantity);
 	},
 	// Lấy câu hỏi của bài tập
 	getExerciseQuestions: async function(req, res){
-		var subject_id = req.body.subject_id;
-		var topic_id = req.body.topic_id;
-		var exercise_number = req.body.exercise_number;
-		var skip_records = 5*(exercise_number-1);
+		var subject_id = parseInt(req.body.subject_id);
+		var topic_id = parseInt(req.body.topic_id);
+		var exercise_number = parseInt(req.body.exercise_number);
+		var page_limit = 5;
+		if(subject_id === 88) {
+			page_limit = 10;
+			exercise_number = 1;
+		}
+		var skip_records = page_limit*(exercise_number-1);
 		var dataQuestions = await EducationQuestions.find({
 			where: {
 				'status': 1,				
@@ -82,7 +91,7 @@ module.exports= {
 				'software': 1				
 			},
 			select:['id', 'request', 'name', 'name_vn', 'categoryIds', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias'],
-			limit: 5,
+			limit: page_limit,
 			skip: skip_records,
 			sort: 'ordering ASC'			
 		}).populate('ref_question_answers');
