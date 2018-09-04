@@ -141,6 +141,14 @@ module.exports.routes = {
   '/history/countTests':{
     action:  'History/countTests'
   },
+  // Lấy tất cả các đề thi
+  '/history/getTestAlls':{
+    action:  'History/getTestAlls'
+  },
+  // Đếm tất cả các đề thi
+  '/history/countTestAlls':{
+    action:  'History/countTestAlls'
+  },
   // Lấy chi tiết của 1 bài tập
   '/history/getDetailLesson':{
     action:  'History/getDetailLesson'

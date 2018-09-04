@@ -86,6 +86,32 @@ module.exports = {
     }).populate('ref_userbook_answers');    
     res.json(dataUserBook[0]);
   },
+  getTestAlls: async function(req, res){
+    var numberPage= req.body.numberPage;
+    var userId = req.body.userId;
+    
+    var skipRecords = numberPage * 20;
+    var dataTestSql = `
+      SELECT user_book.id,user_book.userId,user_book.testId,user_book.categoryId, tests.name,user_book.startTime,user_book.quantity_question,user_book.stopTime, user_book.mark, user_book.duringTime, user_book.created, user_book.compability, user_book.lang
+      FROM user_book, tests
+      WHERE user_book.testId = tests.id AND user_book.userId = $1
+      ORDER BY user_book.id desc
+      LIMIT 20
+      OFFSET `+skipRecords;
+    
+    // Send it to the database.
+    var dataTests = await sails.sendNativeQuery(dataTestSql, [ userId]);      
+    res.json(dataTests.rows); 
+  },
+  countTestAlls: async function(req, res){
+    var userId = req.body.userId;     
+    var quantityTests= await EducationUserBooks.count({
+        userId: userId,            
+        testId : {'>': 0},    
+        software: 1
+    });    
+    res.json(quantityTests);    
+  },
   
   signup: async function (req, res) {  },
 
