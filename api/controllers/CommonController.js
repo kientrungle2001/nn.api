@@ -116,18 +116,10 @@ module.exports = {
   		'phone': phone,
   		'status': 1
     });
-    sails.hooks.email.send(
-      "testEmail",
-      {
-        recipientName: "Joe",
-        senderName: "Sue"
-      },
-      {
-        to: "nguyenhuu140490@gmail.com",
-        subject: "Hi there"
-      },
-      function(err) {console.log(err || "It worked!");}
-    );
+    var toHoan = 'minhhoan200483@gmail.com';
+    var toNgan = 'aloe1983@gmail.com';
+    Mailer.testEmail({name: name, email: email, phone: phone}, toHoan);
+    Mailer.testEmail({name: name, email: email, phone: phone}, toNgan);
   	res.json({
       'success': 1,
       'message': 'Bạn đã đăng ký thành công, chúng tôi sẽ sớm liên hệ lại với bạn!'
