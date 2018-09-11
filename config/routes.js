@@ -27,7 +27,9 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
-  
+  '/login/fbGLogin': {
+    action: 'Login/FbGLogin'
+  },
   '/login/userLogin': {
     action: 'Login/userLogin'
   },
