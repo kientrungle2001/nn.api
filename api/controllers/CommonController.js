@@ -24,7 +24,7 @@ module.exports = {
         },
         sort: 'ordering ASC'
 
-        
+
     });
     return res.json(showData);
   },
@@ -46,14 +46,14 @@ module.exports = {
         },
         sort: 'ordering ASC',
 
-        
+
     });
     return res.json(showData);
   },
   // Hiển thi danh sách các đề con, với input là mảng testIds của đề cha
   getTestChilds: async function(req, res){
   	var testParentIds = req.body.test_parent_id;
-  	
+
   	var dataTestChilds = await EducationTests.find({
   		'parent': {in: testParentIds}
   	});
@@ -62,16 +62,16 @@ module.exports = {
   // Hiển thị đánh giá của người dùng
   getTestimonials : async function(req,res){
   	var categoryId = req.body.categoryId;
-  	
+
     var showData = await CmsNews.find({
         where: {
         	'categoryId': categoryId,
 	        'status': 1,
-          'software': 1,        
+          'software': 1,
         },
         sort: 'ordering ASC',
 
-        
+
     });
     return res.json(showData);
   },
@@ -98,11 +98,11 @@ module.exports = {
 	        'compability': compability,
 	        'categoryIds': categoryIds,
           'software': 1,
-          'displayAtSite': 1,       
-	    });	
-  		
+          'displayAtSite': 1,
+	    });
+
   	}
-  	
+
     return res.json(1);
   },
   // Tạo bản ghi nhận tư vấn
@@ -115,7 +115,11 @@ module.exports = {
   		'email': email,
   		'phone': phone,
   		'status': 1
-  	});
+    });
+    var toHoan = 'minhhoan200483@gmail.com';
+    var toNgan = 'aloe1983@gmail.com';
+    Mailer.testEmail({name: name, email: email, phone: phone}, toHoan);
+    Mailer.testEmail({name: name, email: email, phone: phone}, toNgan);
   	res.json({
       'success': 1,
       'message': 'Bạn đã đăng ký thành công, chúng tôi sẽ sớm liên hệ lại với bạn!'
