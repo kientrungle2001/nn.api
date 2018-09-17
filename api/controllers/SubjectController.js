@@ -3,6 +3,8 @@ module.exports= {
 	getTopics: async function(req, res){
 		var subject_id = req.body.subject_id;
 		subject_id = '%,'+ subject_id +',%';
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;
 		var dataTopics = await CoreCategories.find({
 			where: {
 				'status': 1,
@@ -10,8 +12,8 @@ module.exports= {
 				'document': 0,
 				'parents': { like: subject_id},
 				'classes': {like : '%,5,%'},
-				'software': 1,
-				'site': [0, 1],
+				'software': software,
+				'site': [0, site],
 				// 'displayAtSite': [0, 1]
 			},
 			sort: ['ordering ASC','id ASC']
@@ -21,6 +23,8 @@ module.exports= {
 	getVocabularyTopics: async function(req, res){
 		var subject_id = req.body.subject_id;
 		subject_id = '%,'+ subject_id +',%';
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;
 		var dataTopics = await CoreCategories.find({
 			where: {
 				'status': 1,
@@ -28,9 +32,9 @@ module.exports= {
 				'document': 1,
 				'parents': { like: subject_id},
 				'classes': {like : '%,5,%'},
-				'software': 1,
-				'site': [0, 1],
-				'displayAtSite': [0, 1]
+				'software': software,
+				'site': [0, site],
+				'displayAtSite': [0, site]
 			},
 			sort: 'ordering ASC'
 		});
@@ -39,6 +43,8 @@ module.exports= {
 	// Lấy tư vựng các môn
 	getVocabularies: async function(req, res){
 		var subject_id = req.body.subject_id;
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;
 		var datagetVocabularies = await EducationDocuments.find({
 			where: {
 				'status': 1,				
@@ -46,7 +52,7 @@ module.exports= {
 				'classes': {like : '%,5,%'},
 				'type': 'vocabulary',
 				'hidden': 0,
-				'software': 1,				
+				'software': software,				
 			},
 			sort: 'ordering ASC'
 		});
@@ -56,6 +62,8 @@ module.exports= {
 	getExercises: async function(req, res){
 		var subject_id = parseInt(req.body.subject_id);
 		var page_limit = 5;
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;
 		if( subject_id === 88) {
 			page_limit = 10;
 		}
@@ -66,7 +74,7 @@ module.exports= {
 				'status': 1,				
 				'categoryIds':{ like:  topic_id},
 				'classes': {like : '%,5,%'},
-				'software': 1					
+				'software': software					
 			}
 		});
 		getQuantity = Math.ceil(getQuantity/page_limit);
@@ -78,6 +86,8 @@ module.exports= {
 		var topic_id = parseInt(req.body.topic_id);
 		var exercise_number = parseInt(req.body.exercise_number);
 		var page_limit = 5;
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;
 		if(subject_id === 88) {
 			page_limit = 10;
 			exercise_number = 1;
@@ -88,7 +98,7 @@ module.exports= {
 				'status': 1,				
 				'categoryIds':{ like:  '%,'+topic_id+',%'},
 				'classes': {like : '%,5,%'},
-				'software': 1				
+				'software': software				
 			},
 			select:['id', 'request', 'name', 'name_vn', 'categoryIds', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias'],
 			limit: page_limit,
@@ -100,13 +110,15 @@ module.exports= {
 	// Lấy câu hỏi của bài tập Quan Sat
 	getAllExerciseQuestions: async function(req, res){
 		var subject_id = req.body.subject_id;
-		var topic_id = req.body.topic_id;		
+		var topic_id = req.body.topic_id;
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;		
 		var dataQuestions = await EducationQuestions.find({
 			where: {
 				'status': 1,				
 				'categoryIds':{ like:  '%,'+topic_id+',%'},
 				'classes': {like : '%,5,%'},
-				'software': 1
+				'software': software
 			},
 			select:['id', 'request', 'name', 'name_vn', 'categoryIds', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias'],
 			sort: 'ordering ASC'			
@@ -127,6 +139,8 @@ module.exports= {
 		var quantity_question = req.body.quantity_question;
 		var lang = req.body.lang == '' ? 'en': req.body.lang;
 		var keybook = '' + topic + userId + startTime;
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;
 		var md5 = require('md5');
 		keybook =md5(keybook);
 		var S = require('string');
@@ -143,7 +157,7 @@ module.exports= {
 			'lang' : lang,
 			'status' : 1,			
 			'keybook' : keybook,
-			'software': 1,
+			'software': software,
 			'parentTest': 0,
 			'testId': 0,
 			'startTime': startTime,

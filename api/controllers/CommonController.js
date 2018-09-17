@@ -1,12 +1,22 @@
 module.exports = {
 	// Hiển thị danh sách các môn học
   getSubjects : async function(req,res){
+    /*var software = 1;
+    var site = 1;
+    if(typeof  req.query.software ==='undefined'){
+     
+    }else {
+       software = req.query.software;
+      site = req.query.site;
+    }*/
+    var software = req.query.software || 1;
+    var site = req.query.site || 1;
     var showData = await CoreCategories.find({
         'parent': 47,
         'display': 1,
         'status': 1,
-        'software': 1,
-        'site': [0,1]
+        'software': software,
+        'site': [0, site]
     }).sort('ordering asc');
     return res.json(showData);
   },
@@ -14,10 +24,12 @@ module.exports = {
   getTests : async function(req,res){
   	var categoryId = req.body.categoryId;
   	categoryId = '%,'+categoryId+',%';
+    var software = req.body.software || 1;
+    var site = req.body.site || 1;
     var showData = await EducationTests.find({
         where: {
         	//'practice': 1,
-          'software': 1,
+          'software':software,
 	        //'displayAtSite': [0,1],
 	        'status': 1,
 	        'categoryIds': {like :categoryId }
@@ -31,16 +43,15 @@ module.exports = {
   // Hiển thị danh sách các đề thi thu
   getTestSets : async function(req,res){
   	var categoryId = req.body.categoryId;
-  	/*var compability = req.body.compability;
-  	var categoryId = 383;
-  	var compability =1;*/
+  	var software = req.body.software || 1;
+    var site = req.body.site || 1;
   	categoryId = '%,'+categoryId+',%';
     var showData = await EducationTests.find({
         where: {
         	//'compability': compability,
 	        'status': 1,
-          'software': 1,
-          'displayAtSite': [0,1],
+          'software': software,
+          'displayAtSite': [0,site],
 	        'classes': {like: '%,5,%'},
 	        'categoryIds': {like :categoryId }
         },
@@ -62,12 +73,13 @@ module.exports = {
   // Hiển thị đánh giá của người dùng
   getTestimonials : async function(req,res){
   	var categoryId = req.body.categoryId;
-
+    var software = req.body.software || 1;
+    var site = req.body.site || 1;
     var showData = await CmsNews.find({
         where: {
         	'categoryId': categoryId,
 	        'status': 1,
-          'software': 1,
+          'software': software,
         },
         sort: 'ordering ASC',
 
@@ -83,6 +95,8 @@ module.exports = {
 	var classes= ',5,';
 	var compability= 1;
 	var categoryIds= ',383,';
+  var software = req.body.software || 1;
+  var site = req.body.site || 1;
   	for (var i = 1; i <= 20; i++) {
   		var name= 'Đề số '+i;
   		var name_en= 'Đề số '+i;
@@ -97,8 +111,8 @@ module.exports = {
 	        'classes': classes,
 	        'compability': compability,
 	        'categoryIds': categoryIds,
-          'software': 1,
-          'displayAtSite': 1,
+          'software': software,
+          'displayAtSite': site,
 	    });
 
   	}

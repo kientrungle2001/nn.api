@@ -3,10 +3,12 @@ module.exports = {
 	// Hàm trả về 1 bản ghi trong bảng test, với input: testId
 	getTest: async function(req, res){
 		var testId= req.body.test_id;
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;
 		var dataTest= await EducationTests.find({
 			where: {
 				'id': testId,
-				'software': 1
+				'software': software
 			},
 			limit: 1
 		});
@@ -17,10 +19,12 @@ module.exports = {
 	getQuestionsAnswers: async function(req, res){
 		var testId= req.body.test_id;		
 		testId = '%,'+testId+ ',%';
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;
 		var dataQuestions = await EducationQuestions.find({
 			where: {
 				'testId': { like:  testId},
-				'software': 1
+				'software': software
 			},
 			select:['id', 'request', 'name', 'name_vn', 'testId', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias', 'explaination']
 		}).populate('ref_question_answers');
@@ -29,12 +33,13 @@ module.exports = {
 	//Hàm trả về mảng các câu hỏi và câu trả lời( đề tự luận ) với input testId
 	getQuestionsAnswersTl: async function(req, res){
 		var testId= req.body.test_id;
-		
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;
 		testId = '%,'+testId+ ',%';
 		var dataQuestions = await EducationQuestions.find({
 			where: {
 				'testId': { like:  testId},
-				'software': 1
+				'software': software
 			}
 		});
 		res.json(dataQuestions);
@@ -58,6 +63,8 @@ module.exports = {
 		var keybook = testId + userId + duringTime;
 		var test_name = req.body.test_name;
 		var test_name_sn = req.body.test_name_sn;
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;
 		var md5 = require('md5');
 		keybook =md5(keybook);
 		var S = require('string');
@@ -77,13 +84,15 @@ module.exports = {
 			'compability' : compability,
 			'parentTest' : parentTest,
 			'keybook' : keybook,
-			'software': 1
+			'software': software
 		}).fetch();
 		//update bang user_answers
 		questions.forEach( async function(question, index) {
 			var user_book_id = userbook['id'];
 			var questionId = question['questionId'];
 			var answerId = question['answerId']; 
+			var software = req.body.software || 1;
+    		var site = req.body.site || 1;
 			var user_answers = await EducationUserBookAnswers.create({
 				'user_book_id': user_book_id,
 				'questionId': questionId,
@@ -106,7 +115,7 @@ module.exports = {
 				username: username,
 				name: test_name,
 				name_sn: test_name_sn,
-				software: 1
+				software: software
 			}
 		).exec(async(err, element, wasCreated)=> {
 		  if (err) { return res.serverError(err); }

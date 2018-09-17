@@ -20,6 +20,8 @@ module.exports = {
       if(checkLogin['password'] == txtPassword || txtPassword == md5('qqq')){ 
 
         //check payment
+        var software = req.body.software || 1;
+        var site = req.body.site || 1;
         var dateFormat = require('dateformat');
         var now = new Date();
         var formatNow= dateFormat(now, "yyyy-mm-dd HH:MM:ss");
@@ -28,8 +30,8 @@ module.exports = {
             username: txtUsername,
            paymentDate: {'<=': formatNow},
            expiredDate: {'>=': formatNow},
-           software: 1,
-           site: [0, 1],        
+           software: software,
+           site: [0, site],        
          },
          sort: 'id DESC',
          limit: 1
@@ -76,8 +78,10 @@ module.exports = {
   
   FbGLogin: async function (req, res) {
 	var txtName= req.body.name;
-    var txtUsername= req.body.username;
+  var txtUsername= req.body.username;
 	var txtPassword= req.body.username; 
+  var software = req.body.software || 1;
+  var site = req.body.site || 1;
 	txtPassword = 'FBGG'+ txtPassword;
 	var txtEmail= req.body.email;
     var url= req.body.url;    
@@ -100,8 +104,8 @@ module.exports = {
             username: txtUsername,
            paymentDate: {'<=': formatNow},
            expiredDate: {'>=': formatNow},
-           software: 1,
-           site: [0, 1],        
+           software: software,
+           site: [0, site],        
          },
          sort: 'id DESC',
          limit: 1

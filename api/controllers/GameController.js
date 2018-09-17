@@ -1,27 +1,33 @@
 module.exports = {
 	getType : async function(req, res){
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;
 		var dataTypeGame = await GameTypes.find({
-			'software': 1,
+			'software': software,
 			'vocabulary': 0,
 			'status': 1
 		});
 		res.json(dataTypeGame);
 	},
 	getTopic: async function(req, res){
-		var gameType = req.gameType;		
+		var gameType = req.gameType;	
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;	
 		if(gameType == 'muatu'){
 			var dataGame = await GameTopics.find({
 				where: {
-					'software': 1,
+					'software': software,
 					'status': 1
 				},
 				select: ['id','game_topic','parent']
 			});
 
 		}else if(gameType == 'dragWord'){
+			var software = req.body.software || 1;
+    		var site = req.body.site || 1;
 			var dataGame = await Games.find({
 				where: {
-					'software': 1,
+					'software': software,
 					'status': 1,
 					'gamecode': 'dragWord'
 				},
@@ -53,7 +59,9 @@ module.exports = {
 		var gamecode = req.body.gamecode;
 		var score = req.body.score;
 		var live = req.body.live;
-		var userId = req.body.userId;				 
+		var userId = req.body.userId;	
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;			 
 		if(check== 1){
 			// insert database
 			var dataScores = await GameScores.create({
@@ -62,7 +70,7 @@ module.exports = {
 				'score': score,
 				'live': live,
 				'userId': userId,
-				'software': 1							
+				'software': software							
 			}).fetch();
 			// lấy xếp hạng game
 			var insertId = dataScores['id'];
@@ -93,11 +101,13 @@ module.exports = {
 		var userId = req.body.userId;
 		var cateId = req.body.cateId;
 		var documentId = req.body.documentId;
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;
 		var dataScores = await GameScores.create({
 			'gamecode': gameCode,
 			'score': score,
 			'userId': userId,
-			'software': 1,
+			'software': software,
 			'documentId': documentId,
 			'trueWords': trueWords,
 			'totalWord': totalWord,

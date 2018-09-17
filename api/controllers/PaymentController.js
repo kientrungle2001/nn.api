@@ -5,7 +5,8 @@ module.exports = {
 		var userId = req.body.userId;
 		var username = req.body.username;		
 		var pinCard = md5(req.body.pincard);	
-		//var pinCard= md5('ee0302e0');	
+		var software = req.body.software || 1;
+    	var site = req.body.site || 1;
 		var dataResult= {
 			'string': '',
 			'result': 0,
@@ -16,8 +17,8 @@ module.exports = {
 		var checkCard = await EcommercePayCards.find({
 			where: {
 				'pincard': pinCard,
-				'software': 1,
-				'site': [0, 1],
+				'software': software,
+				'site': [0, site],
 			},
 			limit: 1
 		});
@@ -76,8 +77,8 @@ module.exports = {
 							'serviceType': 'full',
 							'cardCode': pinCard,
 							'languages': 'ev',
-							'software': 1,
-							'site': 1,
+							'software': software,
+							'site': site,
 						});
 						dataResult.string = 'Bạn đã nạp thẻ thành công';
 						dataResult.result =1;
@@ -106,8 +107,8 @@ module.exports = {
 							'serviceType': 'full',
 							'cardCode': pinCard,
 							'languages': 'ev',
-							'software': 1,
-							'site': 1,
+							'software': software,
+							'site': site,
 						});
 						var quantity = checkCard['quantity'] - 1;
 						await EcommercePayCards.update({'id':checkCard['id']}).set({
@@ -148,7 +149,7 @@ module.exports = {
 			'phone':phone,
 			'amount':amount,
 			'status': 1,
-			'software': 1,
+			'software': software,
 		});
 		res.json(1);
 	},
