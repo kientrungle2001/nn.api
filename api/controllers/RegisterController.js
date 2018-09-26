@@ -44,6 +44,8 @@ module.exports = {
         'userId':createUser['id'],
         'username': createUser['username'],
         'name': createUser['name'],
+        'phone': createUser['phone'],
+          'email': createUser['email'],
         'checkPayment': 0,
         'paymentDate': '',
         'expiredDate': ''

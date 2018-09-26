@@ -50,6 +50,8 @@ module.exports = {
           'userId':checkLogin['id'],
           'username': checkLogin['username'],
           'name': checkLogin['name'],
+          'phone': checkLogin['phone'],
+          'email': checkLogin['email'],
           'checkPayment': userPayment,
           'paymentDate': paymentDate,
           'expiredDate': expiredDate
@@ -124,6 +126,8 @@ module.exports = {
           'userId':checkLogin['id'],
           'username': checkLogin['username'],
           'name': checkLogin['name'],
+          'phone': checkLogin['phone'],
+          'email': checkLogin['email'],
           'checkPayment': userPayment,
           'paymentDate': paymentDate,
           'expiredDate': expiredDate
