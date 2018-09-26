@@ -3,17 +3,18 @@ module.exports = {
   
   getLessons: async function(req, res){
     var numberPage= req.body.numberPage;
-    var userId = req.body.userId;    
+    var userId = req.body.userId; 
+    var software = req.body.software || 1;   
     var skipRecords = numberPage * 20;    
     var dataLessonSql = `
     SELECT user_book.id,user_book.userId,user_book.categoryId, categories.name,user_book.startTime,user_book.quantity_question,user_book.stopTime, user_book.mark, user_book.duringTime, user_book.created, user_book.exercise_number, user_book.topic, user_book.lang
     FROM user_book, categories
-    WHERE user_book.topic = categories.id AND user_book.userId = $1
+    WHERE user_book.topic = categories.id AND user_book.userId = $1 AND user_book.software = $2
     ORDER BY user_book.id desc
     LIMIT 20
     OFFSET `+skipRecords;
     // Send it to the database.
-    var dataLessons = await sails.sendNativeQuery(dataLessonSql, [userId]);    
+    var dataLessons = await sails.sendNativeQuery(dataLessonSql, [userId, software]);    
     res.json(dataLessons.rows); 
   },
   countLessons: async function(req, res){
@@ -27,17 +28,18 @@ module.exports = {
     var numberPage= req.body.numberPage;
     var userId = req.body.userId;
     var categoryId = req.body.categoryId;
+    var software = req.body.software || 1;
     var skipRecords = numberPage * 20;
     var dataTestSql = `
       SELECT user_book.id,user_book.userId,user_book.testId,user_book.categoryId, tests.name,user_book.startTime,user_book.quantity_question,user_book.stopTime, user_book.mark, user_book.duringTime, user_book.created, user_book.compability, user_book.lang
       FROM user_book, tests
-      WHERE user_book.testId = tests.id  AND user_book.categoryId = $1 AND user_book.userId = $2 
+      WHERE user_book.testId = tests.id  AND user_book.categoryId = $1 AND user_book.userId = $2 AND user_book.software = $3
       ORDER BY user_book.id desc
       LIMIT 20
       OFFSET `+skipRecords;
     
     // Send it to the database.
-    var dataTests = await sails.sendNativeQuery(dataTestSql, [categoryId, userId]);      
+    var dataTests = await sails.sendNativeQuery(dataTestSql, [categoryId, userId, software]);      
     res.json(dataTests.rows); 
   },
   countTests: async function(req, res){
@@ -87,18 +89,19 @@ module.exports = {
   },
   getTestAlls: async function(req, res){
     var numberPage= req.body.numberPage;
-    var userId = req.body.userId;    
+    var userId = req.body.userId; 
+    var software = req.body.software || 1;   
     var skipRecords = numberPage * 20;
     var dataTestSql = `
       SELECT user_book.id,user_book.userId,user_book.testId,user_book.categoryId, tests.name,user_book.startTime,user_book.quantity_question,user_book.stopTime, user_book.mark, user_book.duringTime, user_book.created, user_book.compability, user_book.lang
       FROM user_book, tests
-      WHERE user_book.testId = tests.id AND user_book.userId = $1
+      WHERE user_book.testId = tests.id AND user_book.userId = $1 AND user_book.software = $2
       ORDER BY user_book.id desc
       LIMIT 20
       OFFSET `+skipRecords;
     
     // Send it to the database.
-    var dataTests = await sails.sendNativeQuery(dataTestSql, [ userId]);      
+    var dataTests = await sails.sendNativeQuery(dataTestSql, [ userId, software]);      
     res.json(dataTests.rows); 
   },
   countTestAlls: async function(req, res){

@@ -1,8 +1,9 @@
 module.exports= {
 	getNews : async function(req, res){
-		var categoryId = req.body.categoryId;		
+		var categoryId = req.body.categoryId;	
+		var software = req.body.software;	
 		var dataNews = await CmsNews.find({
-			where:{'categoryId': categoryId, 'status': 1},			
+			where:{'categoryId': categoryId, 'status': 1, 'software': software},			
 			sort: 'ordering ASC'
 		});
 		res.json(dataNews);
