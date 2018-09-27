@@ -29,9 +29,7 @@ module.exports = {
            where: {
             username: txtUsername,
            paymentDate: {'<=': formatNow},
-           expiredDate: {'>=': formatNow},
-           software: software,
-           site: [0, site],        
+           expiredDate: {'>=': formatNow},                 
          },
          sort: 'id DESC',
          limit: 1
@@ -106,8 +104,7 @@ module.exports = {
             username: txtUsername,
            paymentDate: {'<=': formatNow},
            expiredDate: {'>=': formatNow},
-           software: software,
-           site: [0, site],        
+                  
          },
          sort: 'id DESC',
          limit: 1
@@ -158,6 +155,8 @@ module.exports = {
 			'userId':createUser['id'],
 			'username': createUser['username'],
 			'name': createUser['name'],
+      'email': createUser['email'],
+      'phone': '0',
 			'checkPayment': 0,
 			'paymentDate': '',
 			'expiredDate': ''
