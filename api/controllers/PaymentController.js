@@ -138,6 +138,7 @@ module.exports = {
 		var address = req.body.address;
 		var phone = req.body.phone;
 		var amount = req.body.amount;
+		var software = req.body.software;
 		var dateFormat = require('dateformat');
       	var now = new Date();
       	var date= dateFormat(now, "yyyy-mm-dd HH:MM:ss");		
