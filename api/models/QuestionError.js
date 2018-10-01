@@ -29,7 +29,15 @@ module.exports = {
 			type:'string',
 			columnType: 'text'
     },
-    created: false,
+    os: {
+      type: 'string',
+      columnType: 'varchar'
+    },
+    browser: {
+      type: 'string',
+      columnType: 'varchar'
+    },
+
 		modified: false,
     creatorId: false,
     modifiedId: false
