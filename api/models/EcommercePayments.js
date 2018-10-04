@@ -73,7 +73,7 @@ module.exports = {
         type: 'number',
         columnType: 'int'
     },
-    refId: {
+    resellerId: {
         type: 'number',
         columnType: 'int'
     },
