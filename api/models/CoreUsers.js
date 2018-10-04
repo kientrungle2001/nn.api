@@ -86,6 +86,14 @@ module.exports = {
         type: 'ref',
         columnType: 'datetime'
     },
+    resellerId: {
+        type: 'number',
+        columnType: 'int'
+    },
+    coupon: {
+        type: 'string',
+        columnType: 'varchar'
+    }
     
   }
 };

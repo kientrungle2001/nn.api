@@ -66,6 +66,29 @@ module.exports = {
 							});
 						}					
 						// insert history_payment
+						var txtCoupon = req.body.coupon;
+						if(txtCoupon){
+				        	var checkCoupon = await CoreCoupons.find({
+					          where: {
+					            code: txtCoupon,
+					            software: software,
+					            site: site
+					          },
+					          limit: 1
+					        });
+					        if(checkCoupon[0]){
+					          var reseller = checkCoupon[0];
+					          var resellerId = reseller['resellerId'];
+					          var coupon = txtCoupon;
+					          await CoreUsers.update({'username': username}).set({
+								'resellerId': resellerId,
+								'coupon': coupon
+								});
+					        }
+				        }else {
+					        var resellerId = 0;
+					        var coupon = '';
+					    }
 						await EcommercePayments.create({
 							'username': username,
 							'amount': checkCard['price'] ,
@@ -79,6 +102,8 @@ module.exports = {
 							'languages': 'ev',
 							'software': software,
 							'site': site,
+							'resellerId': resellerId,
+							'coupon': coupon
 						});
 						dataResult.string = 'Bạn đã nạp thẻ thành công';
 						dataResult.result =1;

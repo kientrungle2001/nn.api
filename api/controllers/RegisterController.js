@@ -10,6 +10,9 @@ module.exports = {
     var txtBirthday= req.body.birthday; 
     var txtSex= req.body.sex;
     var txtAreacode= req.body.areacode; 
+    var txtCoupon= req.body.coupon;
+    var software = req.body.software || 1;
+    var site = req.body.site || 1;
     var md5 = require('md5');
     txtPassword = md5(txtPassword);
     var checkLogin = await CoreUsers.find({
@@ -25,6 +28,24 @@ module.exports = {
       result.message= 'Tên đăng nhập đã được sử dụng';
       res.json(result);           
     }else{
+      if(txtCoupon){
+        var checkCoupon = await CoreCoupons.find({
+          where: {
+            code: txtCoupon,
+            software: software,
+            site: site
+          },
+          limit: 1
+        });
+        if(checkCoupon[0]){          
+          var reseller = checkCoupon[0];
+          var resellerId = reseller['resellerId'];
+          var coupon = reseller['code'];
+        }
+      }else {        
+          var resellerId = 0;
+          var coupon = '';
+      }
       var now = new Date();
       var jsonDate = now.toJSON();
       var createUser= await CoreUsers.create({
@@ -38,7 +59,9 @@ module.exports = {
         'sex': txtSex,
         'areacode': txtAreacode,
         'registered': jsonDate,
-        'lastlogined': jsonDate
+        'lastlogined': jsonDate,
+        'resellerId': resellerId,
+        'coupon': coupon
       }).fetch();
       var dataUser= {
         'userId':createUser['id'],
