@@ -37,7 +37,10 @@ module.exports = {
       type: 'string',
       columnType: 'varchar'
     },
-
+    userAgent: {
+      type: 'string',
+      columnType: 'varchar'
+    },
 		modified: false,
     creatorId: false,
     modifiedId: false
