@@ -41,6 +41,26 @@ module.exports = {
       type: 'string',
       columnType: 'varchar'
     },
+    categoryId:{
+      type: 'number',
+      columnType: 'int'
+    },
+    topic:{
+      type: 'number',
+      columnType: 'int'
+    },
+    parentTest:{
+      type: 'number',
+      columnType: 'int'
+    },
+    testId:{
+      type: 'number',
+      columnType: 'int'
+    },
+    exercise_number:{
+      type: 'number',
+      columnType: 'int'
+    },
 		modified: false,
     creatorId: false,
     modifiedId: false
