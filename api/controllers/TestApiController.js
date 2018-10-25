@@ -22,7 +22,7 @@ module.exports = {
 		/*var testTests = await EducationTests.find({'id': 21});
 		res.json(testTests);*/
 		// Hiển thị danh sách các môn học
-		var showSubjects = await CoreCategories.showSubjects();
+		var showSubjects = await CoreCategories.find();
 		res.json(showSubjects);
 		
 	}

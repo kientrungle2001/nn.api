@@ -67,4 +67,38 @@ module.exports = {
           message: 'Thay đổi thành công!'
         });
   },
+  getErrorSubject: async function(req,res){
+    var userId = req.body.numberRow;
+    var numberRow = parseInt(req.body.numberRow);
+    var numberPage = parseInt(req.body.numberPage);       
+    var skip = numberPage * numberRow;
+    var questionErrorSql = `
+    SELECT question_error.questionId,question_error.content,question_error.userId,question_error.username,question_error.status,question_error.created,question_error.email,question_error.phone,question_error.note,question_error.os,question_error.userAgent,question_error.categoryId,question_error.topic,question_error.parentTest,question_error.testId,question_error.exercise_number,questions.name,questions.name_vn
+    FROM question_error
+    JOIN questions on question_error.questionId = questions.id
+    WHERE question_error.userId = $1 AND question_error.testId <= $2
+    ORDER BY question_error.id desc
+    LIMIT $3
+    OFFSET $4 `;
+    // Send it to the database.
+    var dataErrors = await sails.sendNativeQuery(questionErrorSql, [userId, 0, numberRow, skip]);
+    res.json(dataErrors.rows);
+  },
+  getErrorTest: async function(req,res){
+    var userId = req.body.numberRow;
+    var numberRow = parseInt(req.body.numberRow);
+    var numberPage = parseInt(req.body.numberPage);   
+    var skip = numberPage * numberRow;
+    var questionErrorSql = `
+    SELECT question_error.questionId,question_error.content,question_error.userId,question_error.username,question_error.status,question_error.created,question_error.email,question_error.phone,question_error.note,question_error.os,question_error.userAgent,question_error.categoryId,question_error.topic,question_error.parentTest,question_error.testId,question_error.exercise_number,questions.name,questions.name_vn
+    FROM question_error
+    JOIN questions on question_error.questionId = questions.id
+    WHERE question_error.userId = $1 AND question_error.testId > $2
+    ORDER BY question_error.id desc
+    LIMIT $3
+    OFFSET $4 `;
+    // Send it to the database.
+    var dataErrors = await sails.sendNativeQuery(questionErrorSql, [userId, 0, numberRow, skip]);
+    res.json(dataErrors.rows);
+  }
 };

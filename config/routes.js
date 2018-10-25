@@ -39,12 +39,6 @@ module.exports.routes = {
   '/register/getAreaCode': {
     action: 'Register/getAreaCode'
   },
-  /*'/testApi': {
-    action: 'TestApi/testApi'
-  },*/
-  '/testApi': {
-    action: 'Subject/getExerciseQuestions'
-  },
   '/common/getTests': {
 	  action: 'Common/getTests'
   },
@@ -126,6 +120,14 @@ module.exports.routes = {
   // Đổi avata
   '/profile/editAvatar':{
     action:  'Profile/editAvatar'
+  },
+  // laays bao loi
+  '/profile/getErrorSubject':{
+    action:  'Profile/getErrorSubject'
+  },
+  // laays bao loi
+  '/profile/getErrorTest':{
+    action:  'Profile/getErrorTest'
   },
   // Lấy các bài luyện tập
   '/history/countLessons':{

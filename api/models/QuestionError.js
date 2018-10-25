@@ -61,7 +61,7 @@ module.exports = {
       type: 'number',
       columnType: 'int'
     },
-		modified: false,
+    modified: false,
     creatorId: false,
     modifiedId: false
 	}

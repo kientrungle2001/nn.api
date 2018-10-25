@@ -138,7 +138,7 @@ module.exports = {
     ref_question_answers:{
         collection: 'EducationQuestionAnswers',
         via: 'question_id'
-    }
+    },
   },
 
 };
