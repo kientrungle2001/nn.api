@@ -59,7 +59,7 @@ module.exports.routes = {
   '/test/getTest':{
     action: 'Test/getTest'
   },
-  
+
   //Hàm trả về mảng các câu hỏi và câu trả lời( đề trắc nghiệm ) với input testId
   '/test/getQuestionsAnswers':{
     action: 'Test/getQuestionsAnswers'
@@ -129,6 +129,13 @@ module.exports.routes = {
   '/profile/getErrorTest':{
     action:  'Profile/getErrorTest'
   },
+  '/profile/countErrorSubject':{
+    action:  'Profile/countErrorSubject'
+  },
+  // laays bao loi
+  '/profile/countErrorTest':{
+    action:  'Profile/countErrorTest'
+  },
   // Lấy các bài luyện tập
   '/history/countLessons':{
     action:  'History/countLessons'
@@ -161,7 +168,7 @@ module.exports.routes = {
   '/history/getDetailTest':{
     action:  'History/getDetailTest'
   },
-  // Lấy chi tiết câu hỏi và câu trả lời của 1 bài 
+  // Lấy chi tiết câu hỏi và câu trả lời của 1 bài
   '/history/getQuestionAnswers': {
     action: 'History/getQuestionAnswers'
   },
@@ -205,7 +212,7 @@ module.exports.routes = {
   '/payment/payCard': {
     action: 'Payment/payCard'
   },
-  
+
   // Đặt thẻ
   '/payment/orderCard': {
     action: 'Payment/orderCard'

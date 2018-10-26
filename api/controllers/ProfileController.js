@@ -1,27 +1,27 @@
 module.exports = {
 	getUser: async function (req, res) {
-    var userId= req.body.userId;     
+    var userId= req.body.userId;
     var getDataUser = await CoreUsers.find({
       where: {id: userId},
       limit: 1
-    }); 
-    if(getDataUser){      
-      res.json(getDataUser[0]);  
-    }   else res.json("False");   
+    });
+    if(getDataUser){
+      res.json(getDataUser[0]);
+    }   else res.json("False");
   },
-  editUser: async function(req, res){     
+  editUser: async function(req, res){
     var txtUserId= req.body.userId;
-    var txtName= req.body.name;    
+    var txtName= req.body.name;
     var txtEmail= req.body.email;
     var txtPhone= req.body.phone;
-    var txtAddress= req.body.address; 
-    var txtBirthday= req.body.birthday; 
+    var txtAddress= req.body.address;
+    var txtBirthday= req.body.birthday;
     var txtSex= req.body.sex;
     var txtSchool= req.body.schoolname;
     var txtClass= req.body.classname;
-    var txtAreacode= req.body.areacode; 
+    var txtAreacode= req.body.areacode;
     var dateUpdate = await CoreUsers.update({id: txtUserId}).set({
-      'name': txtName,      
+      'name': txtName,
       'email': txtEmail,
       'phone': txtPhone,
       'address': txtAddress,
@@ -30,7 +30,7 @@ module.exports = {
       'classname': txtClass,
       'schoolname': txtSchool,
       'areacode': txtAreacode,
-    });    
+    });
     res.json({
       success: 1,
       message:'Cập nhật thành công!'
@@ -39,7 +39,7 @@ module.exports = {
   editPassword: async function(req, res){
     var txtUserId= req.body.userId;
     var txtOldPassword= req.body.oldPassword;
-    var txtNewPassword= req.body.newPassword;    
+    var txtNewPassword= req.body.newPassword;
     var getDataUser = await CoreUsers.find({
       where: {id: txtUserId},
       limit: 1
@@ -68,14 +68,16 @@ module.exports = {
         });
   },
   getErrorSubject: async function(req,res){
-    var userId = req.body.numberRow;
+    var userId = req.body.userId;
     var numberRow = parseInt(req.body.numberRow);
-    var numberPage = parseInt(req.body.numberPage);       
+    var numberPage = parseInt(req.body.numberPage);
     var skip = numberPage * numberRow;
     var questionErrorSql = `
-    SELECT question_error.questionId,question_error.content,question_error.userId,question_error.username,question_error.status,question_error.created,question_error.email,question_error.phone,question_error.note,question_error.os,question_error.userAgent,question_error.categoryId,question_error.topic,question_error.parentTest,question_error.testId,question_error.exercise_number,questions.name,questions.name_vn
+    SELECT question_error.questionId,question_error.content,question_error.userId,question_error.username,question_error.status,question_error.created,question_error.email,question_error.phone,question_error.note,question_error.os,question_error.userAgent,question_error.categoryId,question_error.topic,question_error.parentTest,question_error.testId,question_error.exercise_number,questions.name,questions.name_vn, categories.name as categoryName, cateTopic.name as topicName
     FROM question_error
     JOIN questions on question_error.questionId = questions.id
+    LEFT JOIN categories on question_error.categoryId = categories.id
+    LEFT JOIN categories as cateTopic on question_error.topic = cateTopic.id
     WHERE question_error.userId = $1 AND question_error.testId <= $2
     ORDER BY question_error.id desc
     LIMIT $3
@@ -84,15 +86,26 @@ module.exports = {
     var dataErrors = await sails.sendNativeQuery(questionErrorSql, [userId, 0, numberRow, skip]);
     res.json(dataErrors.rows);
   },
+  countErrorSubject: async function(req,res){
+    var userId = req.body.userId;
+    var errorSubject= await QuestionError.count({
+        userId: userId,
+        testId : 0
+    });
+    res.json(errorSubject);
+  },
   getErrorTest: async function(req,res){
     var userId = req.body.numberRow;
     var numberRow = parseInt(req.body.numberRow);
-    var numberPage = parseInt(req.body.numberPage);   
+    var numberPage = parseInt(req.body.numberPage);
     var skip = numberPage * numberRow;
     var questionErrorSql = `
-    SELECT question_error.questionId,question_error.content,question_error.userId,question_error.username,question_error.status,question_error.created,question_error.email,question_error.phone,question_error.note,question_error.os,question_error.userAgent,question_error.categoryId,question_error.topic,question_error.parentTest,question_error.testId,question_error.exercise_number,questions.name,questions.name_vn
+    SELECT question_error.questionId,question_error.content,question_error.userId,question_error.username,question_error.status,question_error.created,question_error.email,question_error.phone,question_error.note,question_error.os,question_error.userAgent,question_error.categoryId,question_error.topic,question_error.parentTest,question_error.testId,question_error.exercise_number,questions.name,questions.name_vn, categories.name as categoryName, tests.name as testName, testParentTest.name as parentTestName
     FROM question_error
     JOIN questions on question_error.questionId = questions.id
+    LEFT JOIN categories on question_error.categoryId = categories.id
+    LEFT JOIN tests on question_error.testId = tests.id
+    LEFT JOIN tests as testParentTest on question_error.parentTest = testParentTest.id
     WHERE question_error.userId = $1 AND question_error.testId > $2
     ORDER BY question_error.id desc
     LIMIT $3
@@ -100,5 +113,13 @@ module.exports = {
     // Send it to the database.
     var dataErrors = await sails.sendNativeQuery(questionErrorSql, [userId, 0, numberRow, skip]);
     res.json(dataErrors.rows);
+  },
+  countErrorTest: async function(req,res){
+    var userId = req.body.userId;
+    var errorSubject= await QuestionError.count({
+        userId: userId,
+        testId : {'>': 0}
+    });
+    res.json(errorSubject);
   }
 };
