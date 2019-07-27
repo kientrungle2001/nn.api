@@ -26,7 +26,7 @@ module.exports = {
 				'testId': { like:  testId},
 				'software': software
 			},
-			select:['id', 'request', 'name', 'name_vn', 'testId', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias', 'explaination']
+			select:['id', 'request', 'name', 'name_vn', 'testId', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias', 'explaination', 'teacher_answers']
 		}).populate('ref_question_answers');
 		res.json(dataQuestions);
 	},
