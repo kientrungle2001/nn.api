@@ -26,7 +26,8 @@ module.exports = {
 				'testId': { like:  testId},
 				'software': software
 			},
-			select:['id', 'request', 'name', 'name_vn', 'testId', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias', 'explaination', 'teacher_answers']
+			select:['id', 'request', 'name', 'name_vn', 'testId', 'questionType', 'status', 'audio', 'translation', 'hasImage', 'hasAudio', 'medias', 'explaination', 'teacher_answers'],
+			sort: 'ordering ASC'
 		}).populate('ref_question_answers');
 		res.json(dataQuestions);
 	},
@@ -40,7 +41,8 @@ module.exports = {
 			where: {
 				'testId': { like:  testId},
 				'software': software
-			}
+			},
+			sort: 'ordering ASC'
 		});
 		res.json(dataQuestions);
 	},
