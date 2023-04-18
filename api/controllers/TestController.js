@@ -101,7 +101,7 @@ module.exports = {
 				'questionId': questionId,
 				'answerId': answerId,
 				'content': content,
-				'questionType': content !== '' ? 'TL' : ''
+				'question_type': content !== '' ? 'TL' : ''
 			});
 		});
 		// update bang user_book_rating
