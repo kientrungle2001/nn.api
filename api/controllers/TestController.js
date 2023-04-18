@@ -93,12 +93,15 @@ module.exports = {
 			var user_book_id = userbook['id'];
 			var questionId = question['questionId'];
 			var answerId = question['answerId']; 
+			var content = question.content || '';
 			var software = req.body.software || 1;
     		var site = req.body.site || 1;
 			var user_answers = await EducationUserBookAnswers.create({
 				'user_book_id': user_book_id,
 				'questionId': questionId,
-				'answerId': answerId
+				'answerId': answerId,
+				'content': content,
+				'questionType': content !== '' ? 'TL' : ''
 			});
 		});
 		// update bang user_book_rating
